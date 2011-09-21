@@ -1,0 +1,19 @@
+<%
+@contact.calls.build(:scheduled_for => Date.today)
+%>
+
+
+<%= semantic_form_for [current_user, @contact] do |form| %>
+
+	<% @contact.calls.each do |call| %>
+		<%= form.semantic_fields_for :calls do |call| %>
+	    	<%= call.input :scheduled_for %>
+		<% end %>
+	<% end %>
+
+  	<%= form.input :phone_number, :as => :hidden, :label => false %>
+	<%= form.input :first_name %>
+	<%= form.input :last_name %>
+	
+	 <%= form.buttons %>
+<% end %>

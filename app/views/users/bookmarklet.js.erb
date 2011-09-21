@@ -1,0 +1,91 @@
+
+insert_script=document.createElement('LINK');
+insert_script.href="<%=root_url() + asset_path("contacts.css")[1..-1] %>";
+insert_script.rel="stylesheet"
+insert_script.type="text/css"
+document.getElementsByTagName('head')[0].appendChild(insert_script);
+
+var xmlHttp = null;
+
+function HighlightNumber(phone_nuber, currentNode)
+{
+	var Url = "<%=new_user_contact_url(current_user)%>?auth_token=<%=current_user.authentication_token%>&phone_number=" + phone_nuber;
+
+	var xmlhttp = new XMLHttpRequest();
+
+	xmlhttp.onreadystatechange = function()
+	{
+		var innerHtml = 
+		   ["<span class='contact-wrap'>",	
+				"<div class='colapse-button' onclick='toggleClass(this.parentNode, \"open\")'></div>",
+				"<div>Call: " + phone_nuber + "</div>",
+				xmlhttp.responseText,
+			"</span>"
+		   ].join('\n');
+		
+
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			var parent = currentNode.parentNode,
+			frag = (function(){
+				var html = innerHtml,
+				wrap = document.createElement('span'),
+				frag = document.createDocumentFragment();
+				wrap.innerHTML = html;
+				
+				while (wrap.firstChild) {
+					frag.appendChild(wrap.firstChild);
+				}
+				
+				return frag;
+			})();
+				
+			parent.insertBefore(frag, currentNode);
+			parent.removeChild(currentNode);
+		
+		}
+	}
+		
+	xmlhttp.open("GET",Url,true);
+	xmlhttp.send();
+}
+
+function decodeMessage(searchText, searchNode)
+{
+	if (!searchText) {
+		// Throw error here if you want...
+		return;
+	}
+	var regex = typeof searchText === 'string' ? new RegExp(searchText, 'g') : searchText,
+	childNodes = (searchNode || document.body).childNodes,
+	cnLength = childNodes.length,
+	excludes = 'html,head,style,title,link,meta,script,object,iframe';
+	while (cnLength--) {
+		var currentNode = childNodes[cnLength];
+		if (currentNode.nodeType === 1 && (excludes + ',').indexOf(currentNode.nodeName.toLowerCase() + ',') === -1) {
+			arguments.callee(searchText, currentNode);
+		}
+		if (currentNode.nodeType !== 3 || !regex.test(currentNode.data) ) {
+			continue;
+		}
+
+		var phone_number = currentNode.data.match(regex);
+		HighlightNumber(phone_number, currentNode) ;
+	}
+}
+
+decodeMessage(<%=Contact.phone_regex%>);
+
+
+
+function toggleClass(elm, className) {
+	if (elm.className.indexOf(className) != -1){
+		elm.className = elm.className.replace(className, "");
+	}else{
+		elm.className += (" " + className);
+	}
+}
+
+function saveContactForm(){
+	document.getElementById("new_contact").submit();	
+}

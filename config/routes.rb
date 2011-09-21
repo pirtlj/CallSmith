@@ -1,10 +1,20 @@
 CallSmith::Application.routes.draw do
+  
+
+  resources :calls
+
   #get \"users\/show\"
 
   root :to => "home#index"
 
   devise_for :users
-  resources :users, :only => :show
+  resources :users, :only => :show do
+    member do
+      get :bookmarklet
+    end
+    
+    resources :contacts
+  end
 
 
   # The priority is based upon order of creation:

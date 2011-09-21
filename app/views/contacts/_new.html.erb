@@ -1,0 +1,21 @@
+
+
+<%
+@contact.calls.build(:scheduled_for => Date.today)
+%>
+
+<%= semantic_form_for [current_user, @contact], :url => user_contacts_url(:auth_token => current_user.authentication_token), :remote => true do |form| %>
+
+	<% @contact.calls.each do |call| %>
+		<%= form.semantic_fields_for :calls do |call| %>
+	    	<%= call.input :scheduled_for, :label => false  %>
+		<% end %>
+	<% end %>
+	<div class='content-controls'>
+
+  	<%= form.input :phone_number, :as => :hidden, :label => false %>
+	<%= form.input :first_name, :label => false, :input_html => { :placeholder => "First Name" }  %>
+	<%= form.input :last_name, :label => false, :input_html => { :placeholder => "Last Name" }   %>
+	</div>
+	 <%= form.buttons %>
+<% end %>

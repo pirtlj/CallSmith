@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Contact:</b>
+  <%= @call.contact_id %>
+</p>
+
+<p>
+  <b>Scheduled for:</b>
+  <%= @call.scheduled_for %>
+</p>
+
+
+<%= link_to 'Edit', edit_call_path(@call) %> |
+<%= link_to 'Back', calls_path %>
