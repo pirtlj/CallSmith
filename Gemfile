@@ -1,16 +1,12 @@
 require 'rbconfig'
-HOST_OS = Config::CONFIG['host_os']
+
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
-
-
-gem 'mysql', '2.8.1', :group => :production
-
-gem 'sqlite3', :group => :development
-
+gem 'mysql', '2.8.1'
 gem 'formtastic'
-
+gem 'jquery-rails'
+gem "devise", ">= 1.4.5"
 
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"
@@ -18,7 +14,6 @@ group :assets do
   gem 'uglifier'
 end
 
-gem 'jquery-rails'
 
 group :test do  
   gem 'turn', :require => false
@@ -32,7 +27,7 @@ gem "guard-bundler", ">= 0.1.3", :group => :development
 gem "guard-rails", ">= 0.0.3", :group => :development
 gem "guard-livereload", ">= 0.3.0", :group => :development
 gem "guard-rspec", ">= 0.4.3", :group => :development
-gem "devise", ">= 1.4.5"
+
 gem "frontend-helpers"
 gem "rails-footnotes", ">= 3.7", :group => :development
 
