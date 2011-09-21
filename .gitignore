@@ -47,7 +47,7 @@ tmp/*
 /spec/routing
 /spec/views
 /specifications
-
+Gemfile.lock
 # scm revert files
 **.orig
 
