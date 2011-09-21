@@ -3,7 +3,11 @@ HOST_OS = Config::CONFIG['host_os']
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
-gem 'sqlite3'
+
+
+gem 'mysql', '2.8.1', :group => :production
+
+gem 'sqlite3', :group => :development
 
 gem 'formtastic'
 
