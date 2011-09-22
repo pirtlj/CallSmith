@@ -24,9 +24,17 @@ span .contact-wrap {
 		background-image: url("/assets/right3green.png");
 		background-size: 100%;
 	}
+	
+	div.colapse-button:hover {
+	 cursor:pointer;
+	}
 
 	.content-controls {
 		display: none;
+		li {
+			float: left;
+			display: inline;
+		}
 	}
 	
 	form.formtastic fieldset > ol > li label { display: none; }
