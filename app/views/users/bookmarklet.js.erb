@@ -1,9 +1,174 @@
+/* CallSmith */
+window.CallSmith = window.CallSmith || {	
+	/* Instance Fields */
+	_this: null,
+	contacts: [],	
+	/* Methods */
+	
+	/* Util */
+	Util: {
+		/* Instance Fields */
+		_this: null,
+		$: null, //jQuery
+		phoneNumberRegex: <%=Contact.phone_regex%>,
+		
+		/* Methods */
+		
+		/* Debug */
+		Debug: {
+			active: <%= Rails.env.development? || Rails.env.dev?  ? "true" : "false"%>,
 
-insert_script=document.createElement('LINK');
-insert_script.href="<%=root_url() + asset_path("contacts.css")[1..-1] %>";
-insert_script.rel="stylesheet"
-insert_script.type="text/css"
-document.getElementsByTagName('head')[0].appendChild(insert_script);
+			log: function(message){
+				if (this.active){
+					console.log(new Date().getTime() + " " + message);
+				}
+			},
+
+			alert: function(message){
+				if (this.active){
+					alert(message);
+				}
+			},
+		},
+
+		init: function(callback){
+			_this = this;
+			
+			_this.Debug.log("CallSmith.Util.init();");
+			
+			_this.loadCss("<%=root_url() + asset_path("contacts.css")[1..-1] %>", function(){});
+			
+			_this.loadScript("<%=root_url() + asset_path("jquery.js")[1..-1] %>", function(){
+				_this.Debug.log("CallSmith.Util.init(); : 'jQuery Active'");
+		     	_this.$ = jQuery.noConflict();
+		
+		
+		
+				//TODO make this work in the case where we load more than one js file that we depend on -JosephP
+				if(callback){
+					callback();
+				}
+		
+				//Extend jQuery filters to user regx
+				//http://james.padolsey.com/javascript/regex-selector-for-jquery/
+			});
+		},
+		
+		regexSearch: function(searchText, searchNode, callback){
+			
+			if (!searchText) {
+				// Throw error here if you want...
+				return;
+			}
+			var regex = typeof searchText === 'string' ? new RegExp(searchText, 'g') : searchText,
+			childNodes = (searchNode || document.body).childNodes,
+			cnLength = childNodes.length,
+			excludes = 'html,head,style,title,link,meta,script,object,iframe';
+			while (cnLength--) {
+				var currentNode = childNodes[cnLength];
+				if (currentNode.nodeType === 1 && (excludes + ',').indexOf(currentNode.nodeName.toLowerCase() + ',') === -1) {
+					arguments.callee(searchText, currentNode, callback);
+				}
+				if (currentNode.nodeType !== 3 || !regex.test(currentNode.data) ) {
+					continue;
+				}
+				if(callback){
+					callback(currentNode, currentNode.data.match(regex));
+				}
+			}
+		},
+		
+		loadScript: function(src, callback){
+			_this = this;
+			_this.Debug.log("CallSmith.Util.loadScript();");
+						
+			var head= document.getElementsByTagName('head')[0];
+			var script= document.createElement('script');
+
+			script.onreadystatechange = function (){
+				if (this.readyState == 'complete'){
+					_this.Debug.log("CallSmith.Util.loadScript(); : '" + src + "  Loaded'");
+					callback();
+				}
+			}
+			script.onload = function(){
+				_this.Debug.log("CallSmith.Util.loadScript(); : '" + src + "  Loaded'");
+				callback();
+			}
+			
+			script.type	= 'text/javascript';
+			script.src	= src;
+			
+			head.appendChild(script);
+		},
+		
+		loadCss: function(src, callback){
+			_this = this;
+			_this.Debug.log("CallSmith.Util.loadCss();");
+						
+			var head = document.getElementsByTagName('head')[0];
+			var script = document.createElement('LINK');
+
+			script.onreadystatechange = function (){
+				if (this.readyState == 'complete'){
+					_this.Debug.log("CallSmith.Util.loadCss(); : '" + src + "  Loaded'");
+					callback();
+				}
+			}
+			script.onload = function(){
+				_this.Debug.log("CallSmith.Util.loadCss(); : '" + src + "  Loaded'");
+				callback();
+			}
+			
+			script.rel 	= "stylesheet";
+			script.type = "text/css";
+			script.href = src;
+			
+			head.appendChild(script);
+		}
+		
+	},
+	
+	Contact: function(){
+		this.node = null;
+		this.phone_nuber = null;
+	},
+
+	init: function(){
+		_this = this;
+		_this.Util.init(_this.onLoad);
+	},
+	
+	onLoad: function(){
+		CallSmith.Util.Debug.log("CallSmith.onLoad();");
+		
+		CallSmith.Util.regexSearch(<%=Contact.phone_regex%>, null, function(node, text){
+			var contact = new CallSmith.Contact();
+			contact.node = node;
+			contact.phone_nuber = text;
+			
+			CallSmith.contacts.push(contact);
+		});
+		
+		CallSmith.Util.$(document.body).append(CallSmith.headerHtml);		
+	},
+	
+	headerHtml: function(){
+		return	[
+				"<div class='CallSmith-header'>",
+				"<input id='contact_phone_number' maxlength='255' name='contact[phone_number]' placeholder='Phone Number' type='text' class=''>",
+				"<input id='contact_first_name' maxlength='255' name='contact[first_name]' placeholder='First Name' type='text' class=''>",
+				"<input id='contact_last_name' maxlength='255' name='contact[last_name' placeholder='Last Name' type='text' class=''>",
+					"THIS IS THE CALLSMITH HEADER",
+				"</div>"
+				].join('\n');
+	}
+	
+}
+
+
+window.CallSmith.init();
+window.CallSmith.Util.Debug.alert("CallSmith Loaded");
 
 var xmlHttp = null;
 
@@ -50,31 +215,6 @@ function HighlightNumber(phone_nuber, currentNode)
 	xmlhttp.send();
 }
 
-function decodeMessage(searchText, searchNode)
-{
-	if (!searchText) {
-		// Throw error here if you want...
-		return;
-	}
-	var regex = typeof searchText === 'string' ? new RegExp(searchText, 'g') : searchText,
-	childNodes = (searchNode || document.body).childNodes,
-	cnLength = childNodes.length,
-	excludes = 'html,head,style,title,link,meta,script,object,iframe';
-	while (cnLength--) {
-		var currentNode = childNodes[cnLength];
-		if (currentNode.nodeType === 1 && (excludes + ',').indexOf(currentNode.nodeName.toLowerCase() + ',') === -1) {
-			arguments.callee(searchText, currentNode);
-		}
-		if (currentNode.nodeType !== 3 || !regex.test(currentNode.data) ) {
-			continue;
-		}
-
-		var phone_number = currentNode.data.match(regex);
-		HighlightNumber(phone_number, currentNode) ;
-	}
-}
-
-decodeMessage(<%=Contact.phone_regex%>);
 
 
 

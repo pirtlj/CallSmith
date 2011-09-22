@@ -5,6 +5,20 @@
 @import "util";
 
 
+.CallSmith-header {
+	background: lightBlue;
+	width: 100%;
+	position: absolute;
+	top: 0px;
+	height: 40px;
+	text-align: center;
+	padding: 10px 0px 10px 0px;
+	vertical-align: middle;
+	height: 20px;
+	z-index: 100;
+}
+
+
 
 
 span .contact-wrap {
