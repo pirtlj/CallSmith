@@ -8,7 +8,6 @@ gem "pg", :group => :production
 gem "sqlite3-ruby", :group => :development
 
 gem 'formtastic'
-gem 'hassle'
 
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"
