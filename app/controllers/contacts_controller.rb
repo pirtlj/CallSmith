@@ -28,7 +28,7 @@ class ContactsController < ApplicationController
   def new
     @contact = Contact.new(:phone_number => params[:phone_number])
     
-    if request.xhr? || true
+    if request.xhr?
       respond_to do |format|
         format.html { render partial: 'new' }
         format.json { render json: @contact }

@@ -5,6 +5,7 @@ window.CallSmith = window.CallSmith || {
 	_this: null,
 	contacts: [],
 	currentContactIndex: -1,
+	contactCreateUrl: "<%=user_contacts_url(:user_id => current_user.id, :auth_token => current_user.authentication_token)%>",
 	elm: null,
 		
 	
@@ -139,6 +140,23 @@ window.CallSmith = window.CallSmith || {
 	Contact: function(){
 		this.node = null;
 		this.phoneNumber = null;
+		
+		this.json = function(){
+			return {
+				contact: { 
+					calls_attributes: {
+						0: {
+							'scheduled_for(1i)': 2011,
+			 				'scheduled_for(2i)': 9,
+			 				'scheduled_for(3i)': 23
+						}
+					},
+			 		phone_number: this.phoneNumber,
+				 	first_name: "BOB",
+				 	last_name: "SMITH"
+				}
+			}
+		}
 	},
 
 	init: function(){
@@ -152,7 +170,7 @@ window.CallSmith = window.CallSmith || {
 		CallSmith.Util.regexSearch(<%=Contact.phone_regex%>, null, function(node, text){
 			var contact = new CallSmith.Contact();
 			contact.node = node;
-			contact.phoneNumber = text;
+			contact.phoneNumber = text[0];
 			
 			CallSmith.contacts.push(contact);
 		});
@@ -187,6 +205,14 @@ window.CallSmith = window.CallSmith || {
 		CallSmith.Util.Debug.log("CallSmith.nextContact(); : index = " + CallSmith.currentContactIndex);
 	},
 	
+	saveContact: function(){
+		var contact = CallSmith.getCurrentContact();
+		CallSmith.Util.$.post(CallSmith.contactCreateUrl, CallSmith.getCurrentContact().json(),
+		 function(data) {
+			alert("SAVED");
+		 }, "json");	
+	},
+	
 	getCurrentContact: function(){
 		CallSmith.Util.Debug.log("CallSmith.currentContact();");
 			
@@ -195,22 +221,30 @@ window.CallSmith = window.CallSmith || {
 	
 	render: function(){
 		CallSmith.Util.Debug.log("CallSmith.render();");
-		CallSmith.elm.html(CallSmith.headerHtml());
+		CallSmith.elm.html(CallSmith.guts());
 	},
 		
-	headerHtml: function(){
+	guts: function(){
 		
-		return	[
-				"<div class='label'>",
-					(CallSmith.currentContactIndex + 1) + " of " + CallSmith.contacts.length + " contacts found. Number:",
-				"</div>",
-				"<input id='contact_phone_number' maxlength='255' name='contact[phone_number]' placeholder='Phone Number' type='text' class='' value='"+ CallSmith.getCurrentContact().phoneNumber + "'>",
-				"<input id='contact_first_name' maxlength='255' name='contact[first_name]' placeholder='First Name' type='text' class=''>",
-				"<input id='contact_last_name' maxlength='255' name='contact[last_name' placeholder='Last Name' type='text' class=''>",
-				"<button class='previous contact-button' onclick='CallSmith.previousContact();'></button>",
-				"<button class='next contact-button' onclick='CallSmith.nextContact();'></button>",
-				"<button class='save contact-button' onclick='alert(\"NO SAVE YET\")'>Save</button>"
-				].join('\n');
+		if(CallSmith.getCurrentContact()){
+			return	[
+					"<div class='label'>",
+						(CallSmith.currentContactIndex + 1) + " of " + CallSmith.contacts.length + " contacts found. Number:",
+					"</div>",
+					"<input id='contact_phone_number' maxlength='255' name='contact[phone_number]' placeholder='Phone Number' type='text' class='' value='"+ CallSmith.getCurrentContact().phoneNumber + "'>",
+					"<input id='contact_first_name' maxlength='255' name='contact[first_name]' placeholder='First Name' type='text' class=''>",
+					"<input id='contact_last_name' maxlength='255' name='contact[last_name' placeholder='Last Name' type='text' class=''>",
+					"<button class='previous contact-button' onclick='CallSmith.previousContact();'></button>",
+					"<button class='next contact-button' onclick='CallSmith.nextContact();'></button>",
+					"<button class='save contact-button' onclick='CallSmith.saveContact();'>Save</button>"
+					].join('\n');
+		}else{
+			return	[
+					"<div class='label'>",
+						"No contacts detected.",
+					"</div>"
+					].join('\n');	
+		}
 	},
 }
 
