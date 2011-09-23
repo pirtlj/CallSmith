@@ -196,12 +196,11 @@ window.CallSmith = window.CallSmith || {
 		
 		return	[
 				"<div class='CallSmith-header'>",
-					CallSmith.contacts.length + " contacts found.",
+					(CallSmith.currentContactIndex + 1) + " of " + CallSmith.contacts.length + " contacts found.",
 					"Number: ",
 					"<input id='contact_phone_number' maxlength='255' name='contact[phone_number]' placeholder='Phone Number' type='text' class='' value='"+ CallSmith.getCurrentContact().phoneNumber + "'>",
 					"<input id='contact_first_name' maxlength='255' name='contact[first_name]' placeholder='First Name' type='text' class=''>",
 					"<input id='contact_last_name' maxlength='255' name='contact[last_name' placeholder='Last Name' type='text' class=''>",
-					"THIS IS THE CALLSMITH HEADER",
 				"</div>"
 				].join('\n');
 	},
