@@ -1,11 +1,14 @@
 /* CallSmith */
 window.CallSmith = window.CallSmith || {	
 	/* Instance Fields */
+	
 	_this: null,
-	contacts: [],	
-	/* Methods */
+	contacts: [],
+	currentContactIndex: -1,
+		
 	
 	/* Util */
+	
 	Util: {
 		/* Instance Fields */
 		_this: null,
@@ -129,9 +132,12 @@ window.CallSmith = window.CallSmith || {
 		
 	},
 	
+	
+	/* Methods */
+	
 	Contact: function(){
 		this.node = null;
-		this.phone_nuber = null;
+		this.phoneNumber = null;
 	},
 
 	init: function(){
@@ -145,30 +151,65 @@ window.CallSmith = window.CallSmith || {
 		CallSmith.Util.regexSearch(<%=Contact.phone_regex%>, null, function(node, text){
 			var contact = new CallSmith.Contact();
 			contact.node = node;
-			contact.phone_nuber = text;
+			contact.phoneNumber = text;
 			
 			CallSmith.contacts.push(contact);
 		});
 		
-		CallSmith.Util.$(document.body).append(CallSmith.headerHtml);		
+		CallSmith.contacts.reverse();
+		
+		CallSmith.nextContact();
+		CallSmith.render();		
 	},
 	
+	nextContact: function(){
+		CallSmith.Util.Debug.log("CallSmith.nextContact();");
+		
+		CallSmith.Util.Debug.log("CallSmith.nextContact(); : index = " + CallSmith.currentContactIndex);
+		
+		CallSmith.currentContactIndex +=  (CallSmith.currentContactIndex + 1 < CallSmith.contacts.length) ? 1 : 0;
+		
+		CallSmith.Util.Debug.log("CallSmith.nextContact(); : index = " + CallSmith.currentContactIndex); 
+	},
+	
+	previousContact: function(){
+		CallSmith.Util.Debug.log("CallSmith.previousContact();");
+		
+		CallSmith.currentContactIndex -=  (CallSmith.currentContactIndex > 0) ? 1 : 0; 
+		
+		CallSmith.Util.Debug.log("CallSmith.nextContact(); : index = " + CallSmith.currentContactIndex);
+	},
+	
+	getCurrentContact: function(){
+		CallSmith.Util.Debug.log("CallSmith.currentContact();");
+			
+		return CallSmith.contacts[CallSmith.currentContactIndex]
+	},
+	
+	render: function(){
+		CallSmith.Util.Debug.log("CallSmith.render();");
+		
+		CallSmith.Util.$(document.body).append(CallSmith.headerHtml);
+	},
+		
 	headerHtml: function(){
+		
 		return	[
 				"<div class='CallSmith-header'>",
-				"<input id='contact_phone_number' maxlength='255' name='contact[phone_number]' placeholder='Phone Number' type='text' class=''>",
-				"<input id='contact_first_name' maxlength='255' name='contact[first_name]' placeholder='First Name' type='text' class=''>",
-				"<input id='contact_last_name' maxlength='255' name='contact[last_name' placeholder='Last Name' type='text' class=''>",
+					CallSmith.contacts.length + " contacts found.",
+					"Number: ",
+					"<input id='contact_phone_number' maxlength='255' name='contact[phone_number]' placeholder='Phone Number' type='text' class='' value='"+ CallSmith.getCurrentContact().phoneNumber + "'>",
+					"<input id='contact_first_name' maxlength='255' name='contact[first_name]' placeholder='First Name' type='text' class=''>",
+					"<input id='contact_last_name' maxlength='255' name='contact[last_name' placeholder='Last Name' type='text' class=''>",
 					"THIS IS THE CALLSMITH HEADER",
 				"</div>"
 				].join('\n');
-	}
-	
+	},
 }
 
 
 window.CallSmith.init();
-window.CallSmith.Util.Debug.alert("CallSmith Loaded");
+window.CallSmith.Util.Debug.log("CallSmith Loaded");
 
 var xmlHttp = null;
 
