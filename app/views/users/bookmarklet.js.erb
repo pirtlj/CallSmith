@@ -170,7 +170,8 @@ window.CallSmith = window.CallSmith || {
 			CallSmith.Util.$.post(CallSmith.contactCreateUrl, CallSmith.getCurrentContact().json(), function(data) {
 				_this.isSaved = true;
 				CallSmith.render();
-			 }, "json");
+			 }, "json")
+		    .error(function() { alert("error"); });
 		}
 		
 		this.getStatusText = function(){
