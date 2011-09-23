@@ -5,6 +5,7 @@ window.CallSmith = window.CallSmith || {
 	_this: null,
 	contacts: [],
 	currentContactIndex: -1,
+	elm: null,
 		
 	
 	/* Util */
@@ -158,8 +159,12 @@ window.CallSmith = window.CallSmith || {
 		
 		CallSmith.contacts.reverse();
 		
+		
+		CallSmith.elm = CallSmith.Util.$("<div id='CallSmith-root' class='CallSmith-header'>");
+		
+		CallSmith.Util.$(document.body).append(CallSmith.elm);
+		
 		CallSmith.nextContact();
-		CallSmith.render();		
 	},
 	
 	nextContact: function(){
@@ -168,6 +173,7 @@ window.CallSmith = window.CallSmith || {
 		CallSmith.Util.Debug.log("CallSmith.nextContact(); : index = " + CallSmith.currentContactIndex);
 		
 		CallSmith.currentContactIndex +=  (CallSmith.currentContactIndex + 1 < CallSmith.contacts.length) ? 1 : 0;
+		CallSmith.render();
 		
 		CallSmith.Util.Debug.log("CallSmith.nextContact(); : index = " + CallSmith.currentContactIndex); 
 	},
@@ -176,6 +182,7 @@ window.CallSmith = window.CallSmith || {
 		CallSmith.Util.Debug.log("CallSmith.previousContact();");
 		
 		CallSmith.currentContactIndex -=  (CallSmith.currentContactIndex > 0) ? 1 : 0; 
+		CallSmith.render();
 		
 		CallSmith.Util.Debug.log("CallSmith.nextContact(); : index = " + CallSmith.currentContactIndex);
 	},
@@ -188,20 +195,21 @@ window.CallSmith = window.CallSmith || {
 	
 	render: function(){
 		CallSmith.Util.Debug.log("CallSmith.render();");
-		
-		CallSmith.Util.$(document.body).append(CallSmith.headerHtml);
+		CallSmith.elm.html(CallSmith.headerHtml());
 	},
 		
 	headerHtml: function(){
 		
 		return	[
-				"<div class='CallSmith-header'>",
-					(CallSmith.currentContactIndex + 1) + " of " + CallSmith.contacts.length + " contacts found.",
-					"Number: ",
-					"<input id='contact_phone_number' maxlength='255' name='contact[phone_number]' placeholder='Phone Number' type='text' class='' value='"+ CallSmith.getCurrentContact().phoneNumber + "'>",
-					"<input id='contact_first_name' maxlength='255' name='contact[first_name]' placeholder='First Name' type='text' class=''>",
-					"<input id='contact_last_name' maxlength='255' name='contact[last_name' placeholder='Last Name' type='text' class=''>",
-				"</div>"
+				"<div class='label'>",
+					(CallSmith.currentContactIndex + 1) + " of " + CallSmith.contacts.length + " contacts found. Number:",
+				"</div>",
+				"<input id='contact_phone_number' maxlength='255' name='contact[phone_number]' placeholder='Phone Number' type='text' class='' value='"+ CallSmith.getCurrentContact().phoneNumber + "'>",
+				"<input id='contact_first_name' maxlength='255' name='contact[first_name]' placeholder='First Name' type='text' class=''>",
+				"<input id='contact_last_name' maxlength='255' name='contact[last_name' placeholder='Last Name' type='text' class=''>",
+				"<button class='previous contact-button' onclick='CallSmith.previousContact();'></button>",
+				"<button class='next contact-button' onclick='CallSmith.nextContact();'></button>",
+				"<button class='save contact-button' onclick='alert(\"NO SAVE YET\")'>Save</button>"
 				].join('\n');
 	},
 }
@@ -221,7 +229,7 @@ function HighlightNumber(phone_nuber, currentNode)
 	xmlhttp.onreadystatechange = function()
 	{
 		var innerHtml = 
-		   ["<span class='contact-wrap'>",	
+		   ["<span id='CallSmith-root' class='contact-wrap'>",	
 				"<div class='colapse-button' onclick='toggleClass(this.parentNode, \"open\")'></div>",
 				"<div>Call: " + phone_nuber + "</div>",
 				xmlhttp.responseText,

@@ -11,18 +11,54 @@
 	position: fixed;
 	top: 0px;
 	left: 0px;
-	height: 40px;
+	height: 50px;
 	text-align: center;
-	padding: 10px 0px 10px 0px;
-	vertical-align: middle;
-	height: 20px;
+	height: 52px;
 	z-index: 100;
+	line-height: 30px;
+	
 	
 	input {
-		display: inline;
+		display: inline-block;
 		width: 120px;
-		height: 9px;
+		height: 30px;
+		margin: 10px;
+		padding: 0px;
+		vertical-align: top;
+		text-align: center;
+	}
+	
+	.label {
+		display: inline-block;
+		width:	250px;
+		height: 30px;
+		margin: 10px;
+		padding: 0px;
+		vertical-align: top;
+		text-align: right;
+		margin-right: -10px;
+	}
+	
+	.contact-button {
+		display: inline-block;
+		width: 30px;
+		height: 30px;
+		margin: 10px;
 		
+	}
+	
+	.contact-button.next {
+		background-image: url("/assets/down3green.png");
+		background-size: 100%;
+	}
+	
+	.contact-button.previous {
+		background-image: url("/assets/up3green.png");
+		background-size: 100%;
+	}
+	
+	.contact-button.save {
+		width: 60px;
 	}
 }
 
