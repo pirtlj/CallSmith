@@ -271,12 +271,18 @@ window.CallSmith = window.CallSmith || {
 					"<input id='contact_last_name' maxlength='255' name='contact[last_name]' placeholder='Last Name' type='text' class='' value='"+ CallSmith.getCurrentContact().lastName + "'>",
 					"<button class='previous contact-button' onclick='CallSmith.previousContact();'></button>",
 					"<button class='next contact-button' onclick='CallSmith.nextContact();'></button>",
-					"<button class='save contact-button' onclick='CallSmith.getCurrentContact().save();'>Save</button>"
+					"<button class='save contact-button' onclick='CallSmith.getCurrentContact().save();'>Save</button>",
+					"<div class='label'>",
+						"<a href='" + CallSmith.contactCreateUrl + "' target='_blank'>My Contacts</a>",
+					"</div>"
 					].join('\n');
 		}else{
 			return	[
 					"<div class='label'>",
 						"No contacts detected.",
+					"</div>"	,
+					"<div class='label'>",
+						"<a href='" + CallSmith.contactCreateUrl + "' target='_blank'>My Contacts</a>",
 					"</div>"
 					].join('\n');	
 		}
