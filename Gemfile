@@ -29,7 +29,7 @@ gem "guard-bundler", ">= 0.1.3", :group => :development
 gem "guard-rails", ">= 0.0.3", :group => :development
 gem "guard-livereload", ">= 0.3.0", :group => :development
 gem "guard-rspec", ">= 0.4.3", :group => :development
-gem "devise", ">= 1.4.5"
+gem "devise", "~> 1.4.7"
 gem "frontend-helpers"
 gem "rails-footnotes", ">= 3.7", :group => :development
 

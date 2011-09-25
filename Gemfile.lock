@@ -42,7 +42,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.1.2)
-    devise (1.4.6)
+    devise (1.4.7)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
@@ -172,7 +172,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.1.0)
-  devise (>= 1.4.5)
+  devise (~> 1.4.7)
   factory_girl_rails (>= 1.2.0)
   formtastic
   frontend-helpers
