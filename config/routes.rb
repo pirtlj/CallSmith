@@ -1,7 +1,11 @@
 CallSmith::Application.routes.draw do
   
 
-  resources :calls
+  resources :calls do
+    member do
+      get :dial
+    end
+  end
 
   #get \"users\/show\"
 

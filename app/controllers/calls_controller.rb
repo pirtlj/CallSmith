@@ -21,6 +21,12 @@ class CallsController < ApplicationController
       format.json { render json: @call }
     end
   end
+  
+  
+  
+  def dial
+    
+  end
 
   # GET /calls/new
   # GET /calls/new.json
