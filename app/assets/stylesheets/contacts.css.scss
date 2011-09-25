@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import "util";
+@import "inc/jqueryui";
 
 
 .CallSmith-header {
@@ -36,6 +37,9 @@
 		padding: 0px;
 		vertical-align: top;
 		text-align: right;
+	}
+	
+	.call-datepicker {
 	}
 	
 	.contact-button {

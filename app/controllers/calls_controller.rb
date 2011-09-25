@@ -3,7 +3,7 @@ class CallsController < ApplicationController
   # GET /calls
   # GET /calls.json
   def index
-    @calls = Call.all
+    @calls = current_user.calls
 
     respond_to do |format|
       format.html # index.html.erb

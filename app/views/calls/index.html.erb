@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <th>Contact</th>
+    <th>Phone Number</th>
     <th>Scheduled for</th>
     <th></th>
     <th></th>
@@ -11,7 +11,7 @@
 
 <% @calls.each do |call| %>
   <tr>
-    <td><%= call.contact_id %></td>
+    <td><%= call.contact.phone_number %></td>
     <td><%= call.scheduled_for %></td>
     <td><%= link_to 'Show', call %></td>
     <td><%= link_to 'Edit', edit_call_path(call) %></td>

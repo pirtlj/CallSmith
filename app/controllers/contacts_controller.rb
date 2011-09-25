@@ -4,7 +4,7 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.all
+    @contacts = current_user.contacts.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -49,7 +49,7 @@ class ContactsController < ApplicationController
   # POST /contacts
   # POST /contacts.json
   def create
-    @contact = Contact.new(params[:contact])
+    @contact = current_user.contacts.new(params[:contact])
     
     if request.xhr?
       if @contact.save
@@ -94,7 +94,7 @@ class ContactsController < ApplicationController
     @contact.destroy
 
     respond_to do |format|
-      format.html { redirect_to contacts_url }
+      format.html { redirect_to user_contacts_url }
       format.json { head :ok }
     end
   end

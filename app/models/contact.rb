@@ -1,4 +1,5 @@
 class Contact < ActiveRecord::Base
+  belongs_to :user
   has_many :calls
   
   accepts_nested_attributes_for :calls

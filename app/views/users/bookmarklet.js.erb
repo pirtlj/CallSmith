@@ -37,22 +37,22 @@ window.CallSmith = window.CallSmith || {
 		},
 
 		init: function(callback){
-			_this = this;
+			CallSmith.Util.Debug.log("CallSmith.Util.init();");
+			CallSmith.Util.loadCss("<%=root_url() + asset_path("contacts.css")[1..-1] %>", function(){});
 			
-			_this.Debug.log("CallSmith.Util.init();");
-			
-			_this.loadCss("<%=root_url() + asset_path("contacts.css")[1..-1] %>", function(){});
-			
-			_this.loadScript("<%=root_url() + asset_path("jquery.js")[1..-1] %>", function(){
-				_this.Debug.log("CallSmith.Util.init(); : 'jQuery Active'");
-		     	_this.$ = jQuery.noConflict();
-		
-		
-		
-				//TODO make this work in the case where we load more than one js file that we depend on -JosephP
-				if(callback){
-					callback();
-				}
+			//TODO make this parallel loading
+			CallSmith.Util.loadScript("<%=root_url() + asset_path("jquery.js")[1..-1] %>", function(){
+				CallSmith.Util.Debug.log("CallSmith.Util.init(); : 'jQuery Active'");
+				
+				CallSmith.Util.loadScript("<%=root_url() + asset_path("jqueryui.js")[1..-1] %>", function(){
+					CallSmith.Util.Debug.log("CallSmith.Util.init(); : 'jQueryUI Active'");
+			     	CallSmith.Util.$ = jQuery.noConflict();
+					
+					//TODO make this work in the case where we load more than one js file that we depend on -JosephP
+					if(callback){
+						callback();
+					}
+				});
 		
 				//Extend jQuery filters to user regx
 				//http://james.padolsey.com/javascript/regex-selector-for-jquery/
@@ -167,6 +167,11 @@ window.CallSmith = window.CallSmith || {
 			_this.firstName = CallSmith.Util.$(CallSmith.elm).find('input[name="contact[first_name]"]').val();
 			_this.lastName = CallSmith.Util.$(CallSmith.elm).find('input[name="contact[last_name]"]').val();
 			
+			dateString = CallSmith.Util.$(CallSmith.elm).find('input[name="contact[date_string]"]').val();
+			
+			alert(dateString);
+			
+			
 			CallSmith.Util.$.post(CallSmith.contactCreateUrl, CallSmith.getCurrentContact().json(), function(data) {
 				_this.isSaved = true;
 				CallSmith.render();
@@ -254,6 +259,7 @@ window.CallSmith = window.CallSmith || {
 	render: function(){
 		CallSmith.Util.Debug.log("CallSmith.render();");
 		CallSmith.elm.html(CallSmith.guts());
+		CallSmith.Util.$( "#call-datepicker" ).datepicker();
 	},
 		
 	guts: function(){
@@ -269,6 +275,7 @@ window.CallSmith = window.CallSmith || {
 					"<input id='contact_phone_number' maxlength='255' name='contact[phone_number]' placeholder='Phone Number' type='text' class='' value='"+ CallSmith.getCurrentContact().phoneNumber + "'>",
 					"<input id='contact_first_name' maxlength='255' name='contact[first_name]' placeholder='First Name' type='text' class='' value='"+ CallSmith.getCurrentContact().firstName + "'>",
 					"<input id='contact_last_name' maxlength='255' name='contact[last_name]' placeholder='Last Name' type='text' class='' value='"+ CallSmith.getCurrentContact().lastName + "'>",
+					"<input id='call-datepicker'  maxlength='255'  name='contact[date_string]' placeholder='Date' type='text' class=''></div>",
 					"<button class='previous contact-button' onclick='CallSmith.previousContact();'></button>",
 					"<button class='next contact-button' onclick='CallSmith.nextContact();'></button>",
 					"<button class='save contact-button' onclick='CallSmith.getCurrentContact().save();'>Save</button>",
