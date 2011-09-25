@@ -13,3 +13,29 @@ Step 1: Drag this link into your bookmark bar -> <a href="javascript:(function()
 	document.getElementsByTagName('head')[0].appendChild(insert_script);
 	})();" style="border: 2px solid #999; font-weight: bold;">CallSmith</a>
 <% end %>
+
+
+<br>
+<br>
+<br>
+<h4>Listing calls for today:</h4>
+
+<table>
+  <tr>
+    <th>Phone Number</th>
+    <th>Scheduled for</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% current_user.calls.today.each do |call| %>
+  <tr>
+    <td><%= call.contact.phone_number %></td>
+    <td><%= call.scheduled_for %></td>
+    <td><%= link_to 'Show', call %></td>
+    <td><%= link_to 'Edit', edit_call_path(call) %></td>
+    <td><%= link_to 'Destroy', call, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>

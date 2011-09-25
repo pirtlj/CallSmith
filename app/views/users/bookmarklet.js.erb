@@ -144,17 +144,18 @@ window.CallSmith = window.CallSmith || {
 		this.isSaved = false;
 		this.firstName = "";
 		this.lastName = "";
+		this.dateString = "";
 		
 		this.json = function(){
 			return {
 				contact: { 
-					calls_attributes: {
+					calls_attributes:  this.dateString.length > 0 ? {
 						0: {
-							'scheduled_for(1i)': 2011,
-			 				'scheduled_for(2i)': 9,
-			 				'scheduled_for(3i)': 23
+							'scheduled_for(1i)': this.dateString.split("/")[2],
+			 				'scheduled_for(2i)': this.dateString.split("/")[0],
+			 				'scheduled_for(3i)': this.dateString.split("/")[1]
 						}
-					},
+					} : {},
 			 		phone_number: 	this.phoneNumber,
 				 	first_name: 	this.firstName,
 				 	last_name: 		this.lastName
@@ -167,9 +168,9 @@ window.CallSmith = window.CallSmith || {
 			_this.firstName = CallSmith.Util.$(CallSmith.elm).find('input[name="contact[first_name]"]').val();
 			_this.lastName = CallSmith.Util.$(CallSmith.elm).find('input[name="contact[last_name]"]').val();
 			
-			dateString = CallSmith.Util.$(CallSmith.elm).find('input[name="contact[date_string]"]').val();
+			_this.dateString = CallSmith.Util.$(CallSmith.elm).find('input[name="contact[date_string]"]').val();
 			
-			alert(dateString);
+			
 			
 			
 			CallSmith.Util.$.post(CallSmith.contactCreateUrl, CallSmith.getCurrentContact().json(), function(data) {

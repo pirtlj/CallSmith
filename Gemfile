@@ -32,6 +32,7 @@ gem "guard-rspec", ">= 0.4.3", :group => :development
 gem "devise", "~> 1.4.7"
 gem "frontend-helpers"
 gem "rails-footnotes", ">= 3.7", :group => :development
+gem "twilio-ruby"
 
 
 
