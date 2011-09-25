@@ -6,6 +6,7 @@ window.CallSmith = window.CallSmith || {
 	contacts: [],
 	currentContactIndex: -1,
 	contactCreateUrl: "<%=user_contacts_url(:user_id => current_user.id, :auth_token => current_user.authentication_token)%>",
+	rootUrl: "<%=root_url%>",
 	elm: null,
 		
 	
@@ -268,6 +269,9 @@ window.CallSmith = window.CallSmith || {
 		if(CallSmith.getCurrentContact()){
 			return	[
 					"<div class='label'>",
+						"<a href='" + CallSmith.rootUrl + "' target='_blank'>Call Smith</a>",
+					"</div>",
+					"<div class='label'>",
 						CallSmith.getCurrentContact().getStatusText(),
 					"</div>",
 					"<div class='label'>",
@@ -286,6 +290,9 @@ window.CallSmith = window.CallSmith || {
 					].join('\n');
 		}else{
 			return	[
+					"<div class='Logo'>",
+						CallSmith,
+					"</div>",
 					"<div class='label'>",
 						"No contacts detected.",
 					"</div>"	,
