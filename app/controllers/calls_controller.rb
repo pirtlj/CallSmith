@@ -19,13 +19,31 @@ class CallsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @call }
+      format.twiml 
     end
   end
   
   
   
   def dial
+    @call = Call.find(params[:id])
     
+    
+    # put your own credentials here
+    account_sid = 'AC480c16e9c9374d60b82894abc39a269e'
+    auth_token = '06679fd51c1bddb4643773c77b0d25d3'
+
+    # set up a client to talk to the Twilio REST API
+    @client = Twilio::REST::Client.new account_sid, auth_token
+    
+    # make a new outgoing call
+    @client.account.calls.create(
+      :from => '+12064037411',
+      :to => '+12064037411',
+      :url => call_url(@call)
+    )
+    
+    redirect_to call_url(@call, :format => :twiml)
   end
 
   # GET /calls/new

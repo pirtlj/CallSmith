@@ -8,6 +8,8 @@ gem "pg", :group => :production
 gem "mysql", :group => :development
 
 gem 'formtastic'
+gem 'twilio-ruby'
+
 
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"
