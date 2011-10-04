@@ -7,7 +7,7 @@ class ActionController::Base
     before_filter :set_twilio_format
     
     def set_twilio_format
-      if is_twilio_request?  || true
+      if is_twilio_request?
         request.format = :twiml
       end
     end
@@ -22,9 +22,12 @@ private
   #If the account guid constant is not explicity set then we make a best guess as to whether this request
   #is coming from Twilio. In this case the response can be explicity requested using the twiml mime type.
   def is_twilio_request?
-    if defined?(TWILIO_ACCOUNT_GUID)
+    #TWILIO_ACCOUNT_GUID = "AC480c16e9c9374d60b82894abc39a269e"
+    #twilio_account_SUID = "AC480c16e9c9374d60b82894abc39a269e"
+    
+    if defined?(twilio_account_SUID)
       #does the request contain a valid account guid
-      is_twilio = (params["AccountGuid"] == TWILIO_ACCOUNT_GUID || params["AccountSid"] == TWILIO_ACCOUNT_GUID)
+      is_twilio = (params["AccountGuid"] == twilio_account_SUID || params["AccountSid"] == twilio_account_SUID)
       params[:format] = "html" if params[:format] == "twiml" && !is_twilio
       return is_twilio
     else
