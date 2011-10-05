@@ -24,7 +24,6 @@ class CallsController < ApplicationController
   end
   
   
-  
   def dial
     @call = Call.find(params[:id])
     
@@ -40,11 +39,22 @@ class CallsController < ApplicationController
     @client.account.calls.create(
       :from => '+12064037411',
       :to => '+12064037411',
-      :url => call_url(@call, :format => "twiml")
+      :url => handler_call_url(@call, :format => "twiml")
     )
     
-    redirect_to call_url(@call, :format => :twiml)
+    redirect_to handler_call_url(@call, :format => :twiml)
   end
+
+ def handler 
+    @call = Call.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @call }
+      format.twiml {  }
+    end
+ end
+
 
   # GET /calls/new
   # GET /calls/new.json

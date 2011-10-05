@@ -4,6 +4,7 @@ CallSmith::Application.routes.draw do
   resources :calls do
     member do
       get :dial
+      post :handler
     end
   end
 
