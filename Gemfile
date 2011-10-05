@@ -9,6 +9,7 @@ gem "mysql", :group => :development
 
 gem 'formtastic'
 gem 'twilio-ruby'
+gem 'httparty'
 
 
 group :assets do

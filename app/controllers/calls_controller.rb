@@ -19,7 +19,7 @@ class CallsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @call }
-      format.twiml 
+      format.twiml { render }
     end
   end
   
