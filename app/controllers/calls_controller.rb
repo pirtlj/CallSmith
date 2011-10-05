@@ -1,5 +1,5 @@
 class CallsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :execpt => [:handler]
   # GET /calls
   # GET /calls.json
   def index
