@@ -1,5 +1,5 @@
 class CallsController < ApplicationController
-  before_filter :authenticate_user!, :execpt => [:handler]
+  before_filter :authenticate_user!
   # GET /calls
   # GET /calls.json
   def index
@@ -39,7 +39,7 @@ class CallsController < ApplicationController
     @client.account.calls.create(
       :from => '+12064037411',
       :to => '+12064037411',
-      :url => handler_call_url(@call, :format => "twiml")
+      :url => handler_call_url(@call, :format => :twiml, :auth_token => current_user.authentication_token)
     )
     flash[:notice] = "Dialing..."
     redirect_to root_url()
