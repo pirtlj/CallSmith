@@ -19,7 +19,7 @@ class CallsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @call }
-      format.twiml { render }
+      format.twiml {  }
     end
   end
   
@@ -40,7 +40,7 @@ class CallsController < ApplicationController
     @client.account.calls.create(
       :from => '+12064037411',
       :to => '+12064037411',
-      :url => call_url(@call)
+      :url => call_url(@call, :format => "twiml")
     )
     
     redirect_to call_url(@call, :format => :twiml)
