@@ -41,8 +41,8 @@ class CallsController < ApplicationController
       :to => '+12064037411',
       :url => handler_call_url(@call, :format => "twiml")
     )
-    
-    redirect_to handler_call_url(@call, :format => :twiml)
+    flash[:notice] = "Dialing..."
+    redirect_to root_url()
   end
 
  def handler 
