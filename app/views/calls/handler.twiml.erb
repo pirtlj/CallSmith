@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <Say voice="woman">hello there</Say>
+  <Say voice="woman">Calling <%= @call.contact.first_name%> <%= @call.contact.last_name%></Say>
   <Dial callerId="+14159992222">
     <Client>jenny</Client>
   </Dial>
