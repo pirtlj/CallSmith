@@ -40,7 +40,7 @@ class CallsController < ApplicationController
       :from => '+12064037411',
       :to => '+12064037411',
       :url => handler_call_url(@call, :format => :twiml, :auth_token => current_user.authentication_token),
-      :StatusCallback  =>  handler_call_url(@call, :format => :json, :auth_token => current_user.authentication_token)
+      :StatusCallback  =>  handler_call_url(@call, :format => :json, :auth_token => current_user.authentication_token, :status_callback => true)
     )
     flash[:notice] = "Dialing..."
     redirect_to root_url()
@@ -48,7 +48,7 @@ class CallsController < ApplicationController
 
  def handler 
     @call = Call.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @call }
