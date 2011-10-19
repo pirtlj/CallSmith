@@ -59,9 +59,7 @@ class CallsController < ApplicationController
  def handler 
     @call = Call.find(params[:id])
     
-    if params[:callback_type] != 'start'
-      Logger.debug(params[:callback_type])
-    end
+    logger.info "Callback Type: " + params[:callback_type]
     
     respond_to do |format|
       format.html # show.html.erb
