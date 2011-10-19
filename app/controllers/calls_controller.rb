@@ -11,6 +11,16 @@ class CallsController < ApplicationController
     end
   end
 
+  def start
+  end
+  
+  def stop
+  end
+  
+  def next
+  end
+  
+
   # GET /calls/1
   # GET /calls/1.json
   def show
@@ -39,8 +49,8 @@ class CallsController < ApplicationController
     @client.account.calls.create(
       :from => '+12064037411',
       :to => '+12064037411',
-      :url => handler_call_url(@call, :format => :twiml, :auth_token => current_user.authentication_token),
-      :StatusCallback  =>  handler_call_url(@call, :format => :json, :auth_token => current_user.authentication_token, :status_callback => true)
+      :url => handler_call_url(@call, :format => :twiml, :auth_token => current_user.authentication_token, :callback_type => "start"),
+      :StatusCallback  =>  handler_call_url(@call, :format => :twiml, :auth_token => current_user.authentication_token, :callback_type => "stop")
     )
     flash[:notice] = "Dialing..."
     redirect_to root_url()
@@ -48,6 +58,10 @@ class CallsController < ApplicationController
 
  def handler 
     @call = Call.find(params[:id])
+    
+    if params[:callback_type] != 'start'
+      Logger.debug(params[:callback_type])
+    end
     
     respond_to do |format|
       format.html # show.html.erb

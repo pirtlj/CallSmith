@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
   <Say voice="woman">Calling <%= @call.contact.first_name%> <%= @call.contact.last_name%></Say>
-  <Dial callerId="+14159992222">
-    <Client>jenny</Client>
+  <Dial callerId="<%= @call.contact.number %>" action="<%= handler_call_url(@call, :format => :twiml, :auth_token => current_user.authentication_token, :callback_type => "dial")%>" method="GET">
   </Dial>
 </Response>
