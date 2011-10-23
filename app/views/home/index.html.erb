@@ -1,18 +1,15 @@
 
 <h3>Home</h3>
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
-<% end %>
 
-
-
+<h4>Installation Instructions</h4>
 <% if user_signed_in? %>
 Step 1: Drag this link into your bookmark bar -> <a href="javascript:(function(){
 	insert_script=document.createElement('SCRIPT');
 	insert_script.type='text/javascript';
 	insert_script.src='<%=bookmarklet_user_url(current_user, :format => :js, :auth_token => current_user.authentication_token)%>';
 	document.getElementsByTagName('head')[0].appendChild(insert_script);
-	})();" style="border: 2px solid #999; font-weight: bold;">CallSmith</a>
+	})();" style="border: 2px solid #999; font-weight: bold;">CallSmith</a><BR>
+Step 2: Done.
 
 
 <br>
@@ -20,23 +17,25 @@ Step 1: Drag this link into your bookmark bar -> <a href="javascript:(function()
 <br>
 <h4>Listing calls for today:</h4>
 
-<table>
-  <tr>
-    <th>Phone Number</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th></th>
+<table class="nice" width=60%>
+  <tr class="headers">
+    <td>First Name</td>
+    <td>Last Name</td>
+    <td>Phone Number</td>
+    <td></td>
+    <td></td>
   </tr>
 
 <h2><%= link_to 'Start', start_calls_path, confirm: 'Are you sure?' %></h2>
 
 <% current_user.calls.today.each do |call| %>
   <tr>
-    <td><%= call.contact.phone_number %></td>
+    
     <td><%= call.contact.first_name %></td>
-    <td><%= call.contact.last_name %></td>
-    <td><%= link_to 'Dial', dial_call_path(call), confirm: 'Are you sure?' %></td>
-    <td><%= link_to 'Destroy', call, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= call.contact.last_name %></td>	
+	<td><%= call.contact.phone_number %></td>    
+<td><%= link_to 'Dial', dial_call_path(call), confirm: 'Are you sure?' %></td>
+    <td><%= link_to 'Delete', call, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>

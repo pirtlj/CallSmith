@@ -8,6 +8,8 @@
 */
 
 
+
+
 /* Table of Content
 ==================================================
 	#Reset & Basics
@@ -21,6 +23,9 @@
 	#Tabs
 	#Forms
 	#Misc */
+
+/* Company Style Guide
+================================================== */
 
 
 /* #Reset & Basics (Inspired by E. Meyers)
@@ -44,9 +49,8 @@
 	q:before, q:after {
 		content: '';
 		content: none; }
-	table {
-		border-collapse: collapse;
-		border-spacing: 0; }
+	
+
 
 
 /* #Basic Styles
