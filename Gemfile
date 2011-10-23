@@ -12,6 +12,7 @@ gem 'sqlite3', :group => :development
 gem 'formtastic'
 gem 'twilio-ruby'
 gem 'httparty'
+gem 'aasm' 
 
 
 group :assets do

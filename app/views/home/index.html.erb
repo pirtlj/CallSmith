@@ -28,6 +28,8 @@ Step 1: Drag this link into your bookmark bar -> <a href="javascript:(function()
     <th></th>
   </tr>
 
+<h2><%= link_to 'Start', start_calls_path, confirm: 'Are you sure?' %></h2>
+
 <% current_user.calls.today.each do |call| %>
   <tr>
     <td><%= call.contact.phone_number %></td>

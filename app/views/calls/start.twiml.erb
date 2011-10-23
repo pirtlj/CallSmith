@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+	<Say voice="woman">
+		Calling  <%= @calls.count %> number.
+	</Say>
+	
+	<Dial action="<%= call_url(@calls.first, :format => :twiml, :auth_token => current_user.authentication_token, :callback_type => "start")%>" method="GET">
+  		<%= @call.contact.phone_number %>
+	</Dial>
+</Response>

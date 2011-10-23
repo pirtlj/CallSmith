@@ -11,13 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110921212707) do
+ActiveRecord::Schema.define(:version => 20111021015016) do
 
   create_table "calls", :force => true do |t|
     t.integer  "contact_id"
     t.date     "scheduled_for"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "aasm_state"
+    t.string   "sid"
   end
 
   create_table "contacts", :force => true do |t|
@@ -46,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20110921212707) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "phone_number"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

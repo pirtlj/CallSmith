@@ -12,7 +12,21 @@ class CallsController < ApplicationController
   end
 
   def start
+    
+    Call.start current_user
+    
+    flash[:notice] = "Starting calls"
+
+    respond_to do |format|
+      format.html {redirect_to root_url}
+      format.twiml {  }
+    end
   end
+  
+  def handle_start
+  
+  end
+  
   
   def stop
   end
@@ -56,16 +70,9 @@ class CallsController < ApplicationController
     redirect_to root_url()
   end
 
- def handler 
-    @call = Call.find(params[:id])
-    
+ def handle 
     logger.info "Callback Type: " + params[:callback_type]
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @call }
-      format.twiml {  }
-    end
+    render :partial => 'handelers/dial'
  end
  
  def status_callback

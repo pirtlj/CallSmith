@@ -2,10 +2,17 @@ CallSmith::Application.routes.draw do
   
 
   resources :calls do
+    collection do
+      get :start
+      post :start
+      
+      get :handle
+      post :handle
+    end
+    
     member do
       get :dial
-      post :handler
-      get :handler
+      get :handle
     end
   end
 
