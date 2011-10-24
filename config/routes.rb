@@ -12,6 +12,7 @@ CallSmith::Application.routes.draw do
     
     member do
       get :dial
+      post:dial
       get :handle
     end
   end
