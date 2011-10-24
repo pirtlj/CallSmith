@@ -1,16 +1,14 @@
 <h1>Listing contacts</h1>
 
-<table>
-  <tr class="headers">
-    <th>User</th>
-    <th>Phone Number</th>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Company</th>
-    <th>Source</th>
-    <th></th>
-    <th></th>
-    <th></th>
+<table class="nice">
+  <tr>
+    <td>User</td>
+    <td>Phone Number</td>
+    <td>First name</td>
+    <td>Last name</td>
+    <td>Company</td>
+    <td>Source</td>
+    <td colspan=3>Actions</td>
   </tr>
 
 <% @contacts.each do |contact| %>

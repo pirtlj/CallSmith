@@ -12,12 +12,14 @@ table.nice {
 	background-color: $color3;
 	border-radius: $borderradius;
 	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
 	td{ padding:8px;}
-	tr.header{ background-color: $color4; color: $color3; }
-	td.leftcorner{ border-top-left-radius:$borderradius;}
-	td.rightcorner{ border-top-right-radius:$borderradius;}	
+	tr:first-child { background-color: $color4; color: $color3; }
+	tr:first-child td:first-child{ border-top-left-radius:$borderradius;}
+	tr:first-child td:last-child{ border-top-right-radius:$borderradius;}	
 	tr:hover { background-color: $color2;}
-	tr.header:hover { background-color: $color4;}
+	tr:first-child:hover { background-color: $color4;}
 	tr:last-child:hover td:first-child { border-bottom-left-radius: $borderradius; }
 	tr:last-child:hover td:last-child { border-bottom-right-radius: $borderradius; }
 	}

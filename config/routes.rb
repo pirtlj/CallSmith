@@ -19,6 +19,7 @@ CallSmith::Application.routes.draw do
     end
   end
 
+  match '/instructions', :to => 'home#instructions'
   #get \"users\/show\"
 
   root :to => "home#index"
