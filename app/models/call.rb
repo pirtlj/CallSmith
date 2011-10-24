@@ -40,7 +40,7 @@ class Call < ActiveRecord::Base
     def connect user
         Call.client.account.calls.create(
           :from => user.phone_number,
-          :to => '+12064037411',
+          :to => user.phone_number,
           :url => handle_calls_url(:format => :twiml, :auth_token => user.authentication_token, :callback_type => "start"),
           :StatusCallback  =>  handle_calls_url(:format => :twiml, :auth_token => user.authentication_token, :callback_type => "start_end")
         )
