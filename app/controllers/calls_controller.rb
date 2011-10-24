@@ -47,24 +47,7 @@ class CallsController < ApplicationController
   
   def dial
     @call = Call.find(params[:id])
-    
-    
-    # put your own credentials here
-    account_sid = 'AC480c16e9c9374d60b82894abc39a269e'
-    auth_token = '06679fd51c1bddb4643773c77b0d25d3'
-
-    # set up a client to talk to the Twilio REST API
-    @client = Twilio::REST::Client.new account_sid, auth_token
-    
-    # make a new outgoing call
-    @client.account.calls.create(
-      :from => '+12064037411',
-      :to => '+12064037411',
-      :url => handler_call_url(@call, :format => :twiml, :auth_token => current_user.authentication_token, :callback_type => "start"),
-      :StatusCallback  =>  handler_call_url(@call, :format => :twiml, :auth_token => current_user.authentication_token, :callback_type => "stop")
-    )
-    flash[:notice] = "Dialing..."
-    redirect_to root_url()
+    render :partial => 'calls/handlers/dial'
   end
 
  def handle 
