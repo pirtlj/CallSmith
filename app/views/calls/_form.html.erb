@@ -1,25 +1,10 @@
-<%= form_for(@call) do |f| %>
-  <% if @call.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@call.errors.count, "error") %> prohibited this call from being saved:</h2>
 
-      <ul>
-      <% @call.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+
+<%= semantic_form_for @call do |f| %>
+    
+ 	<%= f.inputs do %>
+    	<%= f.input :contact_id, :as => :select,  :collection => current_user.contacts.map{|contact| ["#{contact.first_name} #{contact.last_name}", contact.id]}%>
+		<%= f.input :scheduled_for, :as => :datepicker%>
+	<% end %>
+    <%= f.buttons %>
   <% end %>
-
-  <div class="field">
-    <%= f.label :contact_id %><br />
-    <%= f.select :contact_id , current_user.contacts.map {|contact| ["#{contact.first_name}  #{contact.last_name}", contact.id]} %>
-  </div>
-  <div class="field">
-    <%= f.label :scheduled_for %><br />
-    <%= f.date_select :scheduled_for %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

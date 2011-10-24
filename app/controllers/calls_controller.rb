@@ -146,7 +146,7 @@ class CallsController < ApplicationController
     @call.destroy
 
     respond_to do |format|
-      format.html { redirect_to calls_url }
+      format.html { redirect_to root_url }
       format.json { head :ok }
     end
   end
