@@ -1,3 +1,23 @@
 // Place all the styles related to the Calls controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$color1: #0641CA; /*blue*/
+$color2: #83A9FF; /*lightblue*/
+$color3: #E6EEFF; /*whiteish*/
+$color4: #012475; /*dark blue*/
+$borderradius: 12px;
+
+
+table.nice {
+	background-color: $color3;
+	border-radius: $borderradius;
+	text-align:center;
+	td{ padding:8px;}
+	tr:first-child { background-color: $color4; color: $color3; }
+	tr:first-child td:first-child{ border-top-left-radius:$borderradius;}
+	tr:first-child td:last-child{ border-top-right-radius:$borderradius;}	
+	tr:hover { background-color: $color2;}
+	tr:first-child:hover { background-color: $color4;}
+	tr:last-child:hover td:first-child { border-bottom-left-radius: $borderradius; }
+	tr:last-child:hover td:last-child { border-bottom-right-radius: $borderradius; }
+	}
