@@ -51,7 +51,7 @@ class CallsController < ApplicationController
     logger.info "Callback Type: " + params[:callback_type]
     
     if params[:callback_type] == "start"
-      if current_user.calls.today.pending.count < 0
+      if current_user.calls.today.pending.count > 0
         
         current_user.calls.today.pending.each{|call|
           
