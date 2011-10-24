@@ -70,7 +70,12 @@ class CallsController < ApplicationController
  def handle 
     logger.info "Callback Type: " + params[:callback_type]
     
-    render :partial => 'calls/handlers/start'
+    if params[:callback_type] == "start"
+      render :partial => 'calls/handlers/start'
+    elsif params[:callback_type] == "start_end"
+      render :partial => 'calls/handlers/start_end'
+    end
+    
  end
  
    def status_callback
