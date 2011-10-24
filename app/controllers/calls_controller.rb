@@ -67,7 +67,7 @@ class CallsController < ApplicationController
         
         current_user.calls.today.pending.each{|call|
           logger.info "Setting Call Sid: " + params[:CallSid]
-          call.queued
+          call.queue
           call.sid = params[:CallSid]
           call.save
           }
