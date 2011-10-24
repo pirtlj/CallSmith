@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :contact_id %><br />
-    <%= f.number_field :contact_id %>
+    <%= f.select :contact_id , current_user.contacts.map {|contact| ["#{contact.first_name}  #{contact.last_name}", contact.id]} %>
   </div>
   <div class="field">
     <%= f.label :scheduled_for %><br />

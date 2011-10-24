@@ -1,6 +1,8 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    aasm (2.3.1)
+      activerecord
     actionmailer (3.1.0)
       actionpack (= 3.1.0)
       mail (~> 2.3.0)
@@ -182,6 +184,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   coffee-rails (~> 3.1.0)
   devise (~> 1.4.7)
   factory_girl_rails (>= 1.2.0)

@@ -13,6 +13,15 @@
 <p>Step 2: Make sure it works by clicking it. It should pick up this phone number: 555-123-4567. You're done!</p>
 <p>Note: Make sure your bookmark bar is enabled by clicking the Wrench icon (Preferences). The option is under Basics > Toolbar.</p>
 
+
+<%= semantic_form_for [current_user] do |form| %>
+
+  	<%= form.input :phone_number %>
+	<%= form.buttons %>
+	
+<% end %>
+
+
 <br>
 <br>
 <br>
@@ -26,7 +35,11 @@
     <td colspan=2 class="rightcorner">Actions</td>
   </tr>
 
-<% current_user.calls.today.each do |call| %>
+
+<h2><%= link_to 'Start', start_calls_path, confirm: 'Are you sure?' %></h2> 
+<h2><%= link_to 'Next', next_calls_path, confirm: 'Are you sure?' %></h2>
+
+<% current_user.calls.today.pending.each do |call| %>
   <tr>
     
     <td><%= call.contact.first_name %></td>
@@ -39,4 +52,10 @@
 </table>
 
 
+<%@call = Call.new%>
+<%= render 'calls/form' %>
+
+
 <% end %>
+
+

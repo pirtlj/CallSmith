@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+	<Say voice="woman">Calling <%= current_user.calls.today.queued.count %> numbers</Say>
+	<Redirect><%= dial_call_url(current_user.calls.today.queued.first, :format => :twiml, :auth_token => current_user.authentication_token)%></Redirect>
+</Response>

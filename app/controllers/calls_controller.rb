@@ -12,13 +12,37 @@ class CallsController < ApplicationController
   end
 
   def start
+    call_gateway = Call.connect(current_user)
+    
+    flash[:notice] = "Starting calls"
+    
+    redirect_to root_url
   end
+
+
   
-  def stop
+  def dial
+    @call = Call.find(params[:id])
+    @call.complete
+    @call.save
+    
+    render :partial => 'calls/handlers/dial'
   end
-  
+
   def next
+    
+    @call = current_user.calls.today.queued.first
+    
+    # if you have the call sid, you can fetch a call object via:
+    call_gateway =  Call.client.account.calls.get(@call.sid)
+
+    # redirect an in-progress call
+    call_gateway.redirect_to(dial_call_url(@call, :format => :twiml, :auth_token => current_user.authentication_token))
+    
+    flash[:notice] = "Starting Next Call"
+    redirect_to root_url
   end
+  
   
 
   # GET /calls/1
@@ -34,43 +58,37 @@ class CallsController < ApplicationController
   end
   
   
-  def dial
-    @call = Call.find(params[:id])
-    
-    
-    # put your own credentials here
-    account_sid = 'AC480c16e9c9374d60b82894abc39a269e'
-    auth_token = '06679fd51c1bddb4643773c77b0d25d3'
 
-    # set up a client to talk to the Twilio REST API
-    @client = Twilio::REST::Client.new account_sid, auth_token
-    
-    # make a new outgoing call
-    @client.account.calls.create(
-      :from => '+12064037411',
-      :to => '+12064037411',
-      :url => handler_call_url(@call, :format => :twiml, :auth_token => current_user.authentication_token, :callback_type => "start"),
-      :StatusCallback  =>  handler_call_url(@call, :format => :twiml, :auth_token => current_user.authentication_token, :callback_type => "stop")
-    )
-    flash[:notice] = "Dialing..."
-    redirect_to root_url()
-  end
-
- def handler 
-    @call = Call.find(params[:id])
-    
+ def handle 
     logger.info "Callback Type: " + params[:callback_type]
     
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @call }
-      format.twiml {  }
+    if params[:callback_type] == "start"
+      if current_user.calls.today.pending.count > 0
+        
+        current_user.calls.today.pending.each{|call|
+          call.queue
+          call.save
+        }
+        
+        current_user.calls.today.queued.each{|call|
+          logger.info "Setting Call Sid: " + params[:CallSid]
+          call.sid = params[:CallSid]
+          call.save
+        }
+        
+    	  render :partial => 'calls/handlers/start'
+      else
+        render :partial => 'calls/handlers/empty_queue'
+      end
+    elsif params[:callback_type] == "start_end"
+      render :partial => 'calls/handlers/start_end'
     end
+    
  end
  
- def status_callback
+   def status_callback
    
- end
+   end
 
 
   # GET /calls/new
@@ -96,7 +114,7 @@ class CallsController < ApplicationController
 
     respond_to do |format|
       if @call.save
-        format.html { redirect_to @call, notice: 'Call was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Call was successfully created.' }
         format.json { render json: @call, status: :created, location: @call }
       else
         format.html { render action: "new" }

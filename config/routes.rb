@@ -2,10 +2,20 @@ CallSmith::Application.routes.draw do
   
 
   resources :calls do
+    collection do
+      get :start
+      post :start
+      
+      get :next
+      
+      get :handle
+      post :handle
+    end
+    
     member do
       get :dial
-      post :handler
-      get :handler
+      post:dial
+      get :handle
     end
   end
 
@@ -14,7 +24,7 @@ CallSmith::Application.routes.draw do
   root :to => "home#index"
 
   devise_for :users
-  resources :users, :only => :show do
+  resources :users, :only => [:show, :update] do
     member do
       get :bookmarklet
     end
