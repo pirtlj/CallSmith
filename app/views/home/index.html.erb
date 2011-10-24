@@ -21,9 +21,6 @@ Step 2: Done.
 <% end %>
 
 
-<%=
-handle_calls_url(:format => :twiml, :auth_token => current_user.authentication_token, :callback_type => "connect")
-%>
 <br>
 <br>
 <br>
@@ -39,9 +36,10 @@ handle_calls_url(:format => :twiml, :auth_token => current_user.authentication_t
   </tr>
 
 
-<h2><%= link_to 'Start', start_calls_path, confirm: 'Are you sure?' %></h2>
+<h2><%= link_to 'Start', start_calls_path, confirm: 'Are you sure?' %></h2> 
+<h2><%= link_to 'Next', next_calls_path, confirm: 'Are you sure?' %></h2>
 
-<% current_user.calls.today.each do |call| %>
+<% current_user.calls.today.pending.each do |call| %>
   <tr>
     
     <td><%= call.contact.first_name %></td>

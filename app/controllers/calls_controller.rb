@@ -12,21 +12,37 @@ class CallsController < ApplicationController
   end
 
   def start
-    current_user.start_todays_calls
+    call_gateway = Call.connect(current_user)
     
     flash[:notice] = "Starting calls"
     
     redirect_to root_url
   end
+
+
   
-  
-  
-  def stop
+  def dial
+    @call = Call.find(params[:id])
+    @call.complete
+    @call.save
+    
+    render :partial => 'calls/handlers/dial'
   end
-  
+
   def next
     
+    @call = current_user.calls.today.queued.first
+    
+    # if you have the call sid, you can fetch a call object via:
+    call_gateway =  Call.client.account.calls.get(@call.sid)
+
+    # redirect an in-progress call
+    call_gateway.redirect_to(dial_call_url(@call, :format => :twiml, :auth_token => current_user.authentication_token))
+    
+    flash[:notice] = "Starting Next Call"
+    redirect_to root_url
   end
+  
   
 
   # GET /calls/1
@@ -42,10 +58,6 @@ class CallsController < ApplicationController
   end
   
   
-  def dial
-    @call = Call.find(params[:id])
-    render :partial => 'calls/handlers/dial'
-  end
 
  def handle 
     logger.info "Callback Type: " + params[:callback_type]
@@ -54,9 +66,8 @@ class CallsController < ApplicationController
       if current_user.calls.today.pending.count > 0
         
         current_user.calls.today.pending.each{|call|
-          
           logger.info "Setting Call Sid: " + params[:CallSid]
-          
+          call.queued
           call.sid = params[:CallSid]
           call.save
           }

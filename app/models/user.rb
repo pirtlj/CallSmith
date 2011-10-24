@@ -14,11 +14,6 @@ class User < ActiveRecord::Base
   
   
   def start_todays_calls
-    call_gateway = Call.connect(self)
-    
-    self.calls.today.each{|call|
-      call.queue
-      }
   end
   
   
