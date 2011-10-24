@@ -11,4 +11,17 @@ class User < ActiveRecord::Base
   
   has_many :contacts
   has_many :calls, :through => :contacts
+  
+  
+  def start_todays_calls
+    call_gateway = Call.connect(self)
+    
+    self.calls.today.each{|call|
+      call.sid = call_gateway.sid
+      call.queue
+      call.save
+      }
+  end
+  
+  
 end

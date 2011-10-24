@@ -37,20 +37,11 @@ class Call < ActiveRecord::Base
         Call.client.account.calls.create(
           :from => user.phone_number,
           :to => '+12064037411',
-          :url => handel_start_calls_url(:format => :twiml, :auth_token => user.authentication_token, :callback_type => "connect"),
+          :url => handle_calls_url(:format => :twiml, :auth_token => user.authentication_token, :callback_type => "connect"),
           :StatusCallback  =>  handle_calls_url(:format => :twiml, :auth_token => user.authentication_token, :callback_type => "stop")
         )
     end  
       
-    def start user
-      connect_client_call = Call.connect(user)
-      
-      user.calls.today.each{|call|
-        call.sid = connect_client_call.sid
-        call.queue
-        call.save
-        }
-    end  
       
     def dial calls
       

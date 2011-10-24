@@ -13,7 +13,7 @@ class CallsController < ApplicationController
 
   def start
     
-    Call.start current_user
+    current_user.start_todays_calls
     
     flash[:notice] = "Starting calls"
 
@@ -23,9 +23,6 @@ class CallsController < ApplicationController
     end
   end
   
-  def handle_start
-  
-  end
   
   
   def stop
@@ -75,9 +72,9 @@ class CallsController < ApplicationController
     render :partial => 'handelers/dial'
  end
  
- def status_callback
+   def status_callback
    
- end
+   end
 
 
   # GET /calls/new
