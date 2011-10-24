@@ -18,7 +18,7 @@ class Call < ActiveRecord::Base
   class << self
     include ActionDispatch::Routing::UrlFor
     include Rails.application.routes.url_helpers
-    default_url_options[:host] = 'www.example.com'
+    default_url_options[:host] = 'callsmith.heroku.com'
     
     def client
       # put your own credentials here

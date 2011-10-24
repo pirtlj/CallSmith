@@ -21,6 +21,9 @@ Step 2: Done.
 <% end %>
 
 
+<%=
+handle_calls_url(:format => :twiml, :auth_token => current_user.authentication_token, :callback_type => "connect")
+%>
 <br>
 <br>
 <br>
