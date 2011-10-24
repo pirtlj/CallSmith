@@ -12,6 +12,15 @@ Step 1: Drag this link into your bookmark bar -> <a href="javascript:(function()
 Step 2: Done.
 
 
+
+<%= semantic_form_for [current_user] do |form| %>
+
+  	<%= form.input :phone_number %>
+	<%= form.buttons %>
+	
+<% end %>
+
+
 <br>
 <br>
 <br>
@@ -25,6 +34,7 @@ Step 2: Done.
     <td></td>
     <td></td>
   </tr>
+
 
 <h2><%= link_to 'Start', start_calls_path, confirm: 'Are you sure?' %></h2>
 
