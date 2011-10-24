@@ -11,7 +11,11 @@ class Call < ActiveRecord::Base
 
 
   aasm_event :queue do
-    transitions :to => :queued, :from => [:all]
+    transitions :to => :queued, :from => [:pending]
+  end
+  
+  aasm_event :complete do
+    transitions :to => :completed, :from => [:queued]
   end
   
   
