@@ -12,15 +12,11 @@ class CallsController < ApplicationController
   end
 
   def start
-    
     current_user.start_todays_calls
     
     flash[:notice] = "Starting calls"
-
-    respond_to do |format|
-      format.html {redirect_to root_url}
-      format.twiml {  }
-    end
+    
+    redirect_to root_url
   end
   
   
@@ -29,6 +25,7 @@ class CallsController < ApplicationController
   end
   
   def next
+    
   end
   
 
@@ -54,7 +51,18 @@ class CallsController < ApplicationController
     logger.info "Callback Type: " + params[:callback_type]
     
     if params[:callback_type] == "start"
-      render :partial => 'calls/handlers/start'
+      if current_user.calls.today.pending < 0
+        
+        current_user.calls.today.pending.each{|call|
+          call.sid = params[:CallSid]
+          call.save
+          }
+        
+        
+    	  render :partial => 'calls/handlers/start'
+      else
+        render :partial => 'calls/handlers/empty_queue'
+      end
     elsif params[:callback_type] == "start_end"
       render :partial => 'calls/handlers/start_end'
     end

@@ -6,6 +6,8 @@ CallSmith::Application.routes.draw do
       get :start
       post :start
       
+      get :next
+      
       get :handle
       post :handle
     end

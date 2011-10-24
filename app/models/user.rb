@@ -17,9 +17,7 @@ class User < ActiveRecord::Base
     call_gateway = Call.connect(self)
     
     self.calls.today.each{|call|
-      call.sid = call_gateway.sid
       call.queue
-      call.save
       }
   end
   
