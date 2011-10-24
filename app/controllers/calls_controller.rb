@@ -66,12 +66,15 @@ class CallsController < ApplicationController
       if current_user.calls.today.pending.count > 0
         
         current_user.calls.today.pending.each{|call|
-          logger.info "Setting Call Sid: " + params[:CallSid]
           call.queue
+          call.save
+        }
+        
+        current_user.calls.today.queued.each{|call|
+          logger.info "Setting Call Sid: " + params[:CallSid]
           call.sid = params[:CallSid]
           call.save
-          }
-        
+        }
         
     	  render :partial => 'calls/handlers/start'
       else
