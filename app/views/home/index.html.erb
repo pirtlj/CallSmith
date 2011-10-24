@@ -3,27 +3,27 @@
 
 <h4>Installation Instructions</h4>
 <% if user_signed_in? %>
-Step 1: Drag this link into your bookmark bar -> <a href="javascript:(function(){
+<%= image_tag("instructions.png", :align => "right")%>
+<p>Step 1: Drag this button into your bookmark bar → <a href="javascript:(function(){
 	insert_script=document.createElement('SCRIPT');
 	insert_script.type='text/javascript';
 	insert_script.src='<%=bookmarklet_user_url(current_user, :format => :js, :auth_token => current_user.authentication_token)%>';
 	document.getElementsByTagName('head')[0].appendChild(insert_script);
-	})();" style="border: 2px solid #999; font-weight: bold;">CallSmith</a><BR>
-Step 2: Done.
-
+	})();" onclick="alert('Drag me to the bookmark bar!')"><%= image_tag("callsmithbutton.png", :alt => "CallSmith")%></a></p>
+<p>Step 2: Make sure it works by clicking it. It should pick up this phone number: 555-123-4567. You're done!</p>
+<p>Note: Make sure your bookmark bar is enabled by clicking the Wrench icon (Preferences). The option is under Basics > Toolbar.</p>
 
 <br>
 <br>
 <br>
 <h4>Listing calls for today:</h4>
 
-<table class="nice" width=60%>
-  <tr class="headers">
-    <td>First Name</td>
+<table class="nice" width=80%>
+  <tr class="header">
+    <td class="leftcorner">First Name</td>
     <td>Last Name</td>
     <td>Phone Number</td>
-    <td></td>
-    <td></td>
+    <td colspan=2 class="rightcorner">Actions</td>
   </tr>
 
 <% current_user.calls.today.each do |call| %>
@@ -32,8 +32,8 @@ Step 2: Done.
     <td><%= call.contact.first_name %></td>
     <td><%= call.contact.last_name %></td>	
 	<td><%= call.contact.phone_number %></td>    
-<td><%= link_to 'Dial', dial_call_path(call), confirm: 'Are you sure?' %></td>
-    <td><%= link_to 'Delete', call, confirm: 'Are you sure?', method: :delete %></td>
+<td><%= link_to image_tag("http://www.fordesigner.com/imguploads/Image/cjbc/zcool/png20080526/1211769232.png", :size => "25x25"), dial_call_path(call), confirm: 'Are you sure?' %></td>
+    <td><%= link_to image_tag("http://www.gettyicons.com/free-icons/112/must-have/png/256/delete_256.png", :size => "25x25"), call, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>

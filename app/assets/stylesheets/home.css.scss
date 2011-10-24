@@ -5,17 +5,24 @@ $color1: #0641CA; /*blue*/
 $color2: #83A9FF; /*lightblue*/
 $color3: #E6EEFF; /*whiteish*/
 $color4: #012475; /*dark blue*/
+$borderradius: 12px;
 
 
 table.nice {
 	background-color: $color3;
-	border-radius:10px;
-	border-collapse: collapse;
-	border-spacing: 0; 
+	border-radius: $borderradius;
+	text-align:center;
+	td{ padding:8px;}
+	tr.header{ background-color: $color4; color: $color3; }
+	td.leftcorner{ border-top-left-radius:$borderradius;}
+	td.rightcorner{ border-top-right-radius:$borderradius;}	
+	tr:hover { background-color: $color2;}
+	tr.header:hover { background-color: $color4;}
+	tr:last-child:hover td:first-child { border-bottom-left-radius: $borderradius; }
+	tr:last-child:hover td:last-child { border-bottom-right-radius: $borderradius; }
 	}
 
-tr.headers{ background-color: $color4; color: $color3; border-radius:10px;}	
-tr:hover { background-color: $color2;}
+
 
 p.username{
 	float:right;

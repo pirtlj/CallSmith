@@ -16,7 +16,7 @@
 </head>
 <body class="<%= params[:controller] %>">
   <div id="container" class="container">
-    <p class="username"><% if user_signed_in? %><%= link_to(current_user.name, edit_user_registration_path) %><% end %>&nbsp;<%= link_to('[Logout]', destroy_user_session_path, :method=>'delete') %>  </p><br>
+    <p class="username"><% if user_signed_in? %><%= link_to(current_user.name, edit_user_registration_path) %>&nbsp;<%= link_to('[Logout]', destroy_user_session_path, :method=>'delete') %><% end %>  </p><br>
 	<header>
         <nav>
           <ul class="tabs">
