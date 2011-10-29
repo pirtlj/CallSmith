@@ -7,6 +7,9 @@ class HomeController < ApplicationController
     render :layout => 'application'
   end
   
+  def home
+  end
+  
   def instructions
   end
 end
