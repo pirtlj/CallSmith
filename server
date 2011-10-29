@@ -1,0 +1,13 @@
+Script started on Thu Oct 27 22:39:10 2011
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ sc[K[Kls
+Gemfile		README.textile	config.ru	log		spec
+Gemfile.lock	Rakefile	db		public		tmp
+Guardfile	app		doc		script		vendor
+README		config		lib		server
+bash-3.2$ script s[K[K[K[K[K[K[K[Kexit
+exit
+
+Script done on Thu Oct 27 22:39:22 2011

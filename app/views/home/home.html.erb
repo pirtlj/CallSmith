@@ -1,0 +1,7 @@
+<div id="CallSmithApp"></div>
+
+<script type="text/javascript">
+  $(function() {
+	window.AppInstance = new CallSmith.Views.ApplicationView({lists: <%= current_user.lists.to_json.html_safe %>});
+  });
+</script>

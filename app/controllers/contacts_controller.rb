@@ -49,7 +49,8 @@ class ContactsController < ApplicationController
   # POST /contacts
   # POST /contacts.json
   def create
-    @contact = current_user.contacts.new(params[:contact])
+    @list = current_user.lists.find_or_create_by_scheduled_for(params[:scheduled_for])
+    @contact = @list.contacts.create(params[:contact])
     
     if request.xhr?
       if @contact.save

@@ -149,14 +149,13 @@ window.CallSmith = window.CallSmith || {
 		
 		this.json = function(){
 			return {
+				scheduled_for:  this.dateString.length > 0 ? {
+					'scheduled_for(1i)': this.dateString.split("/")[2],
+	 				'scheduled_for(2i)': this.dateString.split("/")[0],
+	 				'scheduled_for(3i)': this.dateString.split("/")[1]
+				} : {},
+				
 				contact: { 
-					calls_attributes:  this.dateString.length > 0 ? {
-						0: {
-							'scheduled_for(1i)': this.dateString.split("/")[2],
-			 				'scheduled_for(2i)': this.dateString.split("/")[0],
-			 				'scheduled_for(3i)': this.dateString.split("/")[1]
-						}
-					} : {},
 			 		phone_number: 	this.phoneNumber,
 				 	first_name: 	this.firstName,
 				 	last_name: 		this.lastName

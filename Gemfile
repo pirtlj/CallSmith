@@ -13,7 +13,8 @@ gem 'formtastic'
 gem 'twilio-ruby'
 gem 'httparty'
 gem 'aasm' 
-
+gem 'rails-backbone'
+gem 'bourbon'
 
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"

@@ -1,6 +1,10 @@
 CallSmith::Application.routes.draw do
   
 
+  resources :list_contacts
+
+  resources :lists
+
   resources :calls do
     collection do
       get :start
@@ -21,6 +25,7 @@ CallSmith::Application.routes.draw do
 
   match 'instructions', :to => 'home#instructions'
 
+  match 'home', :to => 'home#home'
   root :to => "home#index"
 
   devise_for :users

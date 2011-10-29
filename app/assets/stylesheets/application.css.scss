@@ -5,3 +5,27 @@
  *= require_self
  *= require_tree . 
 */
+
+@import "bourbon";
+
+$gw-column: 471px;          // Column Width
+$gw-gutter: 18px;           // Gutter Width
+
+@mixin col($dist) {
+}
+
+.layout-wraper {
+	.col {
+		@include box-shadow(1px 1px 2px 0 grey);
+		width: grid-width(1);
+  		float: left;
+	}
+	
+	.left {
+		margin-left: 0px;
+	}
+	
+	.right {
+		margin-left: $gw-gutter;
+	}
+}
