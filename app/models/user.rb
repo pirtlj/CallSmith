@@ -7,13 +7,14 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_m, :phone_number
   
+  phone_regex = "/[01]?[- .]?\\(?[2-9]\\d{2}\\)?[- .]?\\d{3}[- .]?\\d{4}/"
+  
   before_save :ensure_authentication_token
   
   has_many :contacts
   has_many :calls, :through => :contacts
-  
-  
-  def start_todays_calls
+  validates :phone_number, :presence => true
+    def start_todays_calls
   end
   
   
