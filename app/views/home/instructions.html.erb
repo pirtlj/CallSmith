@@ -1,9 +1,19 @@
 <h4>Installation Instructions</h4>
-<p><B>1. Install:</B> Drag this button into your bookmark bar → <a href="javascript:(function(){
-	insert_script=document.createElement('SCRIPT');
-	insert_script.type='text/javascript';
-	insert_script.src='<%=bookmarklet_user_url(current_user, :format => :js, :auth_token => current_user.authentication_token)%>';
-	document.getElementsByTagName('head')[0].appendChild(insert_script);
-	})();" onclick="alert('Drag me to the bookmark bar!')"><%= image_tag("callsmithbutton.png", :alt => "CallSmith")%></a><BR>If you don't see a bookmark bar, turn it on by clicking the Wrench icon (Preferences). The option is under Basics > Toolbar.<BR><CENTER><%= image_tag("instructions.png")%></CENTER></p>
-<p><B>2. Scan a number:</B> Click your new CallSmith button to pick up this phone number: 555-123-4567. Hit "Save" to add it to your call list.</p>
-<p><B>3. Call!</B> Go to your <%= link_to("home page", root_url)%> and click the "start" button!
+
+<div class="ten columns alpha">
+<div class="instructions">
+	<a href="javascript:(function(){
+		insert_script=document.createElement('SCRIPT');
+		insert_script.type='text/javascript';
+		insert_script.src='<%=bookmarklet_user_url(current_user, :format => :js, :auth_token => current_user.authentication_token)%>';
+		document.getElementsByTagName('head')[0].appendChild(insert_script);
+		})();" onclick="alert('Drag me to the bookmark bar!')" class="myButton">CallSmith</a> ← Drag this into your bookmark bar
+</div>
+<p>If you don't see a bookmark bar, turn it on by clicking the Wrench icon (Preferences). The option is under Basics > Toolbar.<BR></p>
+<p><B>Grab numbers!</B> Click your new CallSmith button to grab this number: 555-123-4567. Hit "Save" to add it to your call list.</p>
+<p><B>Start Callin'!</B> Go to your <%= link_to("Call List", root_url)%> and click the "Start" button!
+
+
+</div>
+<div class="six columns omega"><%= image_tag("instructions.png")%></div>
+<div class="clear"></Div>

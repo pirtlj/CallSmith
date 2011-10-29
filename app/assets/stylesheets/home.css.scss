@@ -1,11 +1,11 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-$color1: #0641CA; /*blue*/
-$color2: #83A9FF; /*lightblue*/
-$color3: #E6EEFF; /*whiteish*/
-$color4: #012475; /*dark blue*/
-$borderradius: 12px;
+$color1: #8C8989; /*blue*/
+$color2: #6A6868; /*lightblue*/
+$color3: #EEE; /*whiteish*/
+$color4: $color2; /*dark blue*/
+$borderradius: 5px;
 
 @mixin table-base {
 background-color: $color3;
@@ -13,10 +13,10 @@ border-radius: $borderradius;
 text-align:left;
 td { padding: 8px;
  vertical-align:middle; }
-tr:first-child { background-color: $color4; color: $color3; }
+tr:first-child { background-color: $color4; color: $color3; font-weight:bold;}
 tr:first-child td:first-child{ border-top-left-radius:$borderradius;}
 tr:first-child td:last-child{ border-top-right-radius:$borderradius;}	
-tr:hover { background-color: $color2;}
+tr:hover { font-weight:bold;}
 tr:first-child:hover { background-color: $color4;}
 tr:last-child:hover td:first-child { border-bottom-left-radius: $borderradius; }
 tr:last-child:hover td:last-child { border-bottom-right-radius: $borderradius; }
@@ -38,5 +38,45 @@ p.username{
 
 .callitem{
 
-background-color: $color4;
+}
+
+.instructions {
+	margin-bottom: 31px; 
+	padding: 15px; 
+	background-color: #daecf6; 
+	border-top: 1px solid #c4ddef; 
+	overflow: hidden;
+	margin: 0 0 18px; 
+	font-size: 18px; 
+	font-weight: 300; 
+	line-height: 24px;
+	}
+
+.myButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background-color:white;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+	border:2px solid #dcdcdc;
+	display:inline-block;
+	color:#000000;
+	font-size:24px;
+	font-weight:bold;
+	padding:9px 20px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #ffffff;
+}.myButton:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #ededed) );
+	background:-moz-linear-gradient( center top, #FFFFFF 5%, #ffffff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed');
+	background-color:#ffffff;
+	text-shadow:1px 1px 10px #ffffff;
+	cursor: move;
+}.myButton:active {
+	position:relative;
+	top:1px;
 }
