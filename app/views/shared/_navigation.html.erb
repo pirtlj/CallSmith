@@ -1,12 +1,6 @@
 <% if user_signed_in? %>
 	<li>
-		<%=  link_to('Home', root_url, :method=>'delete', :class => controller_name == "home" ? "active" : "") %>        
-	</li>
-	<li>
-		<%= link_to('Calls', calls_path, :class => controller_name == "calls" ? "active" : "") %>
-	</li>
-	<li>
-		<%= link_to('Contacts', user_contacts_path(current_user), :class => controller_name == "contacts" ? "active" : "") %>
+		<%=  link_to('CallSmith', root_url, :method=>'delete', :class => controller_name == "home" ? "active" : "") %>        
 	</li>
 <% else %>
 	<li>

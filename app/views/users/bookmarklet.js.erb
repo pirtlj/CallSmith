@@ -272,7 +272,7 @@ window.CallSmith = window.CallSmith || {
 		
 	guts: function(){
 		
-		if(CallSmith.getCurrentContact()){
+	if(CallSmith.getCurrentContact()){
 			return	[
 					"<div class='label'>",
 						"<a href='" + CallSmith.rootUrl + "' target='_blank'>Call Smith</a>",
@@ -290,9 +290,6 @@ window.CallSmith = window.CallSmith || {
 					"<button class='previous contact-button' onclick='CallSmith.previousContact();'></button>",
 					"<button class='next contact-button' onclick='CallSmith.nextContact();'></button>",
 					"<button class='save contact-button' onclick='CallSmith.getCurrentContact().save();'>Save</button>",
-					"<div class='label'>",
-						"<a href='" + CallSmith.contactCreateUrl + "' target='_blank'>My Contacts</a>",
-					"</div>"
 					].join('\n');
 		}else{
 			return	[
