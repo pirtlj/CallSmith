@@ -1,0 +1,1 @@
+(function(){this.JST||(this.JST={}),this.JST["backbone/templates/application"]=function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments)};with(obj||{})__p.push('<div class="layout-wraper">\n\t<div id="col-left" class="col left">Left</div>\n\t<div id="col-right" class="col right">Right</div>\n</div>\n');return __p.join("")}}).call(this)

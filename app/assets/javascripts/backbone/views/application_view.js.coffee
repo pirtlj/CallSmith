@@ -4,6 +4,7 @@ class CallSmith.Views.ApplicationView extends Backbone.View
 	template: JST["backbone/templates/application"]
 	lists:	null
 	selectedList: null
+	selectedContact: null
 	listView: null
 		
 	initialize: (options) ->
@@ -21,4 +22,9 @@ class CallSmith.Views.ApplicationView extends Backbone.View
 		$("#col-left").html(@listView.render().el)
 		
 		return this
+	
+	setSelectedContact: (contact) ->
+		contactView = new CallSmith.Views.Contacts.ShowView(model: contact)
+		$("#col-right").html(contactView.render().el)
+		
 
