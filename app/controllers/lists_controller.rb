@@ -91,7 +91,7 @@ class ListsController < ApplicationController
   end
   
   def handle_connect
-  
+    @list = List.find(params[:id])
   end
   
 end
