@@ -82,4 +82,14 @@ class ListContactsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def dial
+    @list_contact = ListContact.find(params[:id])
+    
+    #@list_contact.complete
+    @list_contact.save
+    
+    render :partial => 'dial'
+  end
+  
 end
