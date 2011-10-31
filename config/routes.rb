@@ -5,6 +5,9 @@ CallSmith::Application.routes.draw do
     member do
       get :dial
       post:dial
+      
+      post :handle_dial
+      get :handle_dial
     end
   end
 

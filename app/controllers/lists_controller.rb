@@ -94,4 +94,18 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
   end
   
+  def next
+    @list = List.find(params[:id])
+
+     # if you have the call sid, you can fetch a call object via:
+     call_gateway =  Call.client.account.calls.get(@call.sid)
+
+     # redirect an in-progress call
+     call_gateway.redirect_to(dial_call_url(@call, :format => :twiml, :auth_token => current_user.authentication_token))
+
+     flash[:notice] = "Starting Next Call"
+     redirect_to root_url
+   end
+  
+  
 end
