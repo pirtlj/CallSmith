@@ -3,7 +3,11 @@ CallSmith::Application.routes.draw do
 
   resources :list_contacts
 
-  resources :lists
+  resources :lists do
+    member do
+      post :connect
+    end
+  end
 
   resources :calls do
     collection do

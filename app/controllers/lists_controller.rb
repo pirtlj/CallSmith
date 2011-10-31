@@ -80,4 +80,13 @@ class ListsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def connect
+    @list = List.find(params[:id])
+      
+    @list.connect
+    respond_to do |format|
+        format.json { render json: @list }
+    end
+  end
 end

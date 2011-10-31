@@ -7,7 +7,7 @@ class CallSmith.Views.Lists.ShowView extends Backbone.View
 	listContacts: null
 	
 	events:
-		'click button.dial': 'test'
+		'click .button.dial': 'onDialClick'
 	
 	initialize: (options) ->
 		_.bindAll(this, 'addOne', 'addAll', 'render')
@@ -27,5 +27,5 @@ class CallSmith.Views.Lists.ShowView extends Backbone.View
 		@listContacts.each(@addOne)
 		return this
 		
-	test: ->
-		alert("TEST");
+	onDialClick: ->
+		@model.connect()
