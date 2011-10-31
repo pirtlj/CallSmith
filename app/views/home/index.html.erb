@@ -1,15 +1,16 @@
 <% if user_signed_in? %>
-<h3>Home</h3>
-<h4>Listing all pending calls:</h4>
-	<CENTER><%= link_to 'Start',start_calls_path, confirm: 'Are you sure?', :class => "button" %> <%= link_to 'Next', next_calls_path, confirm: 'Are you sure?', :class => "button" %></CENTER>
 
-<div class="ten columns alpha">
+<div class="eight columns alpha">
+	<CENTER><%= link_to 'Start',start_calls_path, confirm: 'Are you sure?', :class => "button" %> <%= link_to 'Next', next_calls_path, confirm: 'Are you sure?', :class => "button" %></CENTER>
+</div>
+<div class="clear"></div>
+<div class="eight columns alpha">
 <table class="nice">
   <tr>
-    <td>Status</td>
-    <td>Name</td>
-    <td>Phone Number</td>
-    <td colspan=2>Actions</td>
+    <td width=15%>Status</td>
+    <td width=40%>Name</td>
+    <td width=35%>Phone Number</td>
+    <td width=10% colspan=2>Actions</td>
   </tr>
 
 <% current_user.calls.pending.each do |call| %>
@@ -18,14 +19,15 @@
     <td><%= call.aasm_state %></td>
     <td><%= call.contact.first_name %></td>
 	<td><%= call.contact.phone_number %></td>    
-<td><%= link_to image_tag("http://www.fordesigner.com/imguploads/Image/cjbc/zcool/png20080526/1211769232.png", :size => "25x25"), dial_call_path(call), confirm: 'Are you sure?' %></td>
-    <td><%= link_to image_tag("http://www.gettyicons.com/free-icons/112/must-have/png/256/delete_256.png", :size => "25x25"), call, confirm: 'Are you sure?', method: :delete %></td>
+<td><%= link_to image_tag("call.png", :size => "25x25"), dial_call_path(call), confirm: 'Are you sure?' %></td>
+    <td><%= link_to image_tag("destroy.png", :size => "25x25"), call, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 </div>
 <% end %>
 </table>
 </div>
-<div class="six columns omega">
+
+<div class="eight columns omega">
 <table class="side">
 		<tr>
 			<td>Notes</td>
