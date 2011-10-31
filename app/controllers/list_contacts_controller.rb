@@ -8,7 +8,7 @@ class ListContactsController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @list_contacts.to_json(:include => {
                                                           :contact => {
-                                                            :only => [ :id, :first_name, :last_name ] } } ) }
+                                                            :only => [ :id, :first_name, :last_name, :phone_number ] } } ) }
     end
   end
 
