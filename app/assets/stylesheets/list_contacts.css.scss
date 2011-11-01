@@ -1,25 +1,39 @@
 // Place all the styles related to the ListContacts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-
-
 @import "bourbon";
+$color1: #8C8989; /*gray*/
+$color2: #6A6868; /*dark gray*/
+$color3: #EEE; /*ligher*/
+$borderradius: 5px;
+
 .ListContacts-ShowView {
+	background-color: $color3;
 	.contact {		
 	    display: inline-block;
-
+		height:30px;
+		vertical-align: middle;
 		div {
 			float: left;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			padding: 5px;
 		}
-
+		.status {
+			width:65px;
+		}
 		.first-name {
-			margin: 0px 10px;
+			width:185px;
+		}		
+		.phone-number {
+			width:110px;
+		}
+		.actions {
+			width: 70px;
 		}
 	}
 }
-
-
 .ListContacts-ShowView:hover {
-	background-color: grey;
+	font-weight:bold;
 }
