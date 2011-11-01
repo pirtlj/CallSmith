@@ -4,12 +4,15 @@
 
 
 @import "bourbon";
+$color1: #8C8989; /*gray*/
+$color2: #6A6868; /*dark gray*/
+$color3: #EEE; /*ligher*/
+$borderradius: 5px;
 
 .Lists-ShowView {
 	h1 {
 		font-size: 2.5em;
 	}
-	
 	.button {
 		@include button;
 		text-align: center;
@@ -18,4 +21,39 @@
 	    margin: 14px 0px 14px 20px;
 	    font-size: 2.5em;
 	}
-}
+	
+	.header {
+		height:35px;
+		background-color:$color2;
+		color:$color3;
+		border-top-left-radius:$borderradius;
+		border-top-right-radius:$borderradius;
+		font-weight:bold;
+		div {
+			float: left;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			padding: 5px;
+			}
+		.status {
+			width:65px;
+			}
+		.first-name {
+			width:185px;
+			}		
+		.phone-number {
+			width:110px;
+			}
+		.actions {
+			width: 70px;
+			}
+		}
+		
+		.footer {
+			height:5px;
+			background-color:$color3;
+			border-bottom-left-radius:$borderradius;
+			border-bottom-right-radius:$borderradius;
+			}
+	}
