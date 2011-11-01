@@ -20,8 +20,7 @@ class List < ActiveRecord::Base
       twilio_client.account.calls.create(
         :from =>  "2064037411",
         :to   =>  user.phone_number,
-        :url  =>  handle_calls_url(:format => :twiml, :auth_token => user.authentication_token, :callback_type => "start"),
-        :StatusCallback  =>  handle_calls_url(:format => :twiml, :auth_token => user.authentication_token, :callback_type => "start_end")
+        :url  =>  handle_connect_list_url(self, {:format => :twiml, :auth_token => user.authentication_token, :callback_type => "start"})
       )
   end
 

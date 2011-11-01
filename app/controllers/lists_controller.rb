@@ -89,4 +89,9 @@ class ListsController < ApplicationController
         format.json { render json: @list }
     end
   end
+  
+  def handle_connect
+  
+  end
+  
 end
