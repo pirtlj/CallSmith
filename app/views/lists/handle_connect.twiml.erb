@@ -4,8 +4,8 @@
 	
 	<Say voice="woman">
 		Hello Master.
-		You have <%= @list.list_contacts.count %> calls scheduled.
-		<%if @list.list_contacts.count > 0 %>
+		You have <%= @list.list_contacts.pending.count %> calls scheduled.
+		<%if @list.list_contacts.pending.count > 0 %>
 		Press dial and I shall connect you to <%= @list.list_contacts.pending.first.contact.first_name%> <%= @list.list_contacts.pending.first.contact.last_name %>.
 		<% else %>
 			Would you like me to get you some coffee?
