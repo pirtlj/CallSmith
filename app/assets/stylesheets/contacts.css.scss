@@ -5,6 +5,7 @@
 @import "util";
 @import "inc/jqueryui";
 @import "list_contacts";
+@import "bourbon";
 
 
 .Contacts-ShowView {
@@ -16,6 +17,37 @@
 	@include box-shadow(1px 1px 2px 0 grey);
 	background: white;
 	float: left;
+	
+	.name {
+		float: left;
+	    font-size: 3em;
+	    margin: 20px;
+	}
+	.number {
+		width: 100%;
+		float: right;
+	    font-size: 1.5em;
+	    margin: 0px 10px 20px 0px;
+		text-align: right;
+	}
+	.source.button {
+	    float: right;
+	    width: 16px;
+	    height: 16px;
+	    margin: 10px;
+	
+		@include background-image(url("popout.png"));
+	}
+	
+	.close.button {
+	    float: right;
+	    width: 16px;
+	    height: 16px;
+	    margin: 10px;
+	    text-align: center;
+	    font-weight: bold;
+	}
+	
 }
 
 
