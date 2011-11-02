@@ -3,14 +3,14 @@ CallSmith.Views.Lists ||= {}
 class CallSmith.Views.Lists.ShowView extends Backbone.View
 	template: JST["backbone/templates/lists/show"]	
 	className: "Lists-ShowView"
-	
+	connected: false
 	listContacts: null
 	
 	events:
-		'click .button.dial': 'onDialClick'
+		'click .button.connect': 'onConnectClick'
 	
 	initialize: (options) ->
-		_.bindAll(this, 'addOne', 'addAll', 'render')
+		_.bindAll(this, 'addOne', 'addAll', 'render', 'onConnectClick', 'setConnected')
 		@listContacts = new CallSmith.Collections.ListContactsCollection()
 		@listContacts.bind('reset', @addAll)
 		@listContacts.fetch();
@@ -26,6 +26,11 @@ class CallSmith.Views.Lists.ShowView extends Backbone.View
 		$(this.el).html(@template(@model.toJSON()))
 		@listContacts.each(@addOne)
 		return this
+
+	onConnectClick: ->
+		@model.connect(@setConnected)
+					
+	setConnected: ->
+		@connected = true
+		$(".button.connect").html("Dial")
 		
-	onDialClick: ->
-		@model.connect()

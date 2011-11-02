@@ -20,11 +20,9 @@ class CallSmith.Models.List extends Backbone.RelationalModel
 				key: 'list'
 			]
 
-	connect: ->
-		alert("contecting to server url: " + @connectURL())
-		
+	connect: (callback = null) ->		
 		$.post(@connectURL(), {}, (data) ->
-			alert("TA DA!")
+			if callback then callback()
 		, "json")
 	    .error((x,e) ->
 			alert("ERROR")

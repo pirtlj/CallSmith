@@ -11,4 +11,9 @@ class ListContact < ActiveRecord::Base
   aasm_event :complete do
     transitions :to => :completed, :from => [:pending]
   end
+  
+  aasm_event :reset do
+    transitions :to => :pending, :from => [:pending, :completed]
+  end
+  
 end

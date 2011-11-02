@@ -86,7 +86,7 @@ class ListContactsController < ApplicationController
   def dial
     @list_contact = ListContact.find(params[:id])
     
-    #@list_contact.complete
+    @list_contact.complete
     @list_contact.save
     
     render :partial => 'dial'

@@ -83,8 +83,8 @@ class ListsController < ApplicationController
   
   def connect
     @list = List.find(params[:id])
-      
     @list.connect
+    
     respond_to do |format|
         format.json { render json: @list }
     end
@@ -92,20 +92,18 @@ class ListsController < ApplicationController
   
   def handle_connect
     @list = List.find(params[:id])
+    @list.sid = params["CallSid"]
+    @list.save
   end
   
   def next
     @list = List.find(params[:id])
-
-     # if you have the call sid, you can fetch a call object via:
-     call_gateway =  Call.client.account.calls.get(@call.sid)
-
-     # redirect an in-progress call
-     call_gateway.redirect_to(dial_call_url(@call, :format => :twiml, :auth_token => current_user.authentication_token))
-
-     flash[:notice] = "Starting Next Call"
-     redirect_to root_url
-   end
+    @list.next
+    
+    respond_to do |format|
+        format.json { render json: @list }
+    end
+  end
   
   
 end
