@@ -14,6 +14,8 @@ CallSmith::Application.routes.draw do
   resources :lists do
     member do
       post :connect
+      post :next
+      
       post :handle_connect
       get :handle_connect
     end
