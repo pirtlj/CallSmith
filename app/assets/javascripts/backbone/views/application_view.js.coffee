@@ -25,10 +25,11 @@ class CallSmith.Views.ApplicationView extends Backbone.View
 		return this
 	
 	setSelectedContact: (contact) ->
+		animationDuration = 500;
 		if @contactView
 			$(@contactView.el).animate(
-				left: "0%"
-			, 1000, (elm)->
+				left: "25%"
+			, animationDuration / 2, (elm)->
 				$(@).remove()
 			)
 		
@@ -37,6 +38,6 @@ class CallSmith.Views.ApplicationView extends Backbone.View
 		
 		$(@contactView.el).animate(
 			left: "50%"
-		, 1000)
+		, animationDuration)
 		
 
