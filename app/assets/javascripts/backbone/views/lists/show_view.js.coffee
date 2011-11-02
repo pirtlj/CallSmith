@@ -3,15 +3,15 @@ CallSmith.Views.Lists ||= {}
 class CallSmith.Views.Lists.ShowView extends Backbone.View
 	template: JST["backbone/templates/lists/show"]	
 	className: "Lists-ShowView"
-	connected: false
 	listContacts: null
 	
 	events:
 		'click .button.connect'	: 'onConnectClick'
 		'click .button.dial'	: 'onDialClick'
+		'click .button.cancel'	: 'onCancelClick'
 	
 	initialize: (options) ->
-		_.bindAll(this, 'addOne', 'addAll', 'render', 'onConnectClick', 'setConnected')
+		_.bindAll(this, 'addOne', 'addAll', 'render', 'onConnectClick', 'onDialClick', 'onCancelClick', 'connectCallback', 'dialCallback', 'cancelCallback')
 		@listContacts = new CallSmith.Collections.ListContactsCollection()
 		@listContacts.bind('reset', @addAll)
 		@listContacts.fetch();
@@ -29,13 +29,24 @@ class CallSmith.Views.Lists.ShowView extends Backbone.View
 		return this
 
 	onConnectClick: ->
-		@model.connect(@setConnected)
+		@model.connect(@connectCallback)
 	
 	onDialClick: ->
-		@model.next()
-					
-	setConnected: ->
-		@connected = true
+		@model.next(@dialCallback)
+	
+	onCancelClick: ->
+		alert("Cancel");
+						
+	connectCallback: ->
 		$(".button.connect").toggle()
 		$(".button.dial").toggle()
+	
+	dialCallback: ->
+		$(".button.dial").toggle()
+		$(".button.cancel").toggle()
+		
+	cancelCallback: ->	
+		$(".button.cancel").toggle()
+		$(".button.dial").toggle()
+		
 		
