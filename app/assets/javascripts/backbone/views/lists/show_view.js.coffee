@@ -7,7 +7,8 @@ class CallSmith.Views.Lists.ShowView extends Backbone.View
 	listContacts: null
 	
 	events:
-		'click .button.connect': 'onConnectClick'
+		'click .button.connect'	: 'onConnectClick'
+		'click .button.dial'	: 'onDialClick'
 	
 	initialize: (options) ->
 		_.bindAll(this, 'addOne', 'addAll', 'render', 'onConnectClick', 'setConnected')
@@ -29,8 +30,12 @@ class CallSmith.Views.Lists.ShowView extends Backbone.View
 
 	onConnectClick: ->
 		@model.connect(@setConnected)
+	
+	onDialClick: ->
+		alert("DIAL");
 					
 	setConnected: ->
 		@connected = true
-		$(".button.connect").html("Dial")
+		$(".button.connect").toggle()
+		$(".button.dial").toggle()
 		
