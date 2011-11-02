@@ -25,19 +25,21 @@ class CallSmith.Views.ApplicationView extends Backbone.View
 		return this
 	
 	setSelectedContact: (contact) ->
+		$('.ListContacts-ShowView').removeClass('selected')
+		
 		animationDuration = 500;
 		if @contactView
 			$(@contactView.el).animate(
-				left: "25%"
-			, animationDuration / 2, (elm)->
+				left: "0%"
+			, animationDuration, (elm)->
 				$(@).remove()
 			)
-		
-		@contactView = new CallSmith.Views.Contacts.ShowView(model: contact)
-		$(".layout-wraper").append(@contactView.render().el)
-		
-		$(@contactView.el).animate(
-			left: "50%"
-		, animationDuration)
+			
+		if contact
+			@contactView = new CallSmith.Views.Contacts.ShowView(model: contact)
+			$(".layout-wraper").append(@contactView.render().el)
+			$(@contactView.el).animate(
+				left: "50%"
+			, animationDuration)
 		
 

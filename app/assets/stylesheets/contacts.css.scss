@@ -30,25 +30,30 @@
 	    margin: 0px 10px 20px 0px;
 		text-align: right;
 	}
-	.source.button {
-	    float: right;
-	    width: 16px;
-	    height: 16px;
-	    margin: 10px;
 	
+	.source.button {
 		@include background-image(url("popout.png"));
 	}
 	
 	.close.button {
-	    float: right;
-	    width: 16px;
-	    height: 16px;
-	    margin: 10px;
-	    text-align: center;
-	    font-weight: bold;
 	}
 	
+	.button {
+	    font-weight: bold;
+	    float: right;
+    	margin: 10px;
+	    width: 16px;
+	    height: 16px;
+	    text-align: center;
+	}
+	
+	.button:hover {
+		cursor: pointer;
+	}
 }
+
+
+
 
 
 
