@@ -105,5 +105,14 @@ class ListsController < ApplicationController
     end
   end
   
+  def cancel
+    @list = List.find(params[:id])
+    @list.cancel
+    
+    respond_to do |format|
+        format.json { render json: @list }
+    end
+  end
+  
   
 end

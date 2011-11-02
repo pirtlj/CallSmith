@@ -35,7 +35,7 @@ class CallSmith.Views.Lists.ShowView extends Backbone.View
 		@model.next(@dialCallback)
 	
 	onCancelClick: ->
-		alert("Cancel");
+		@model.cancel(@cancelCallback)
 						
 	connectCallback: ->
 		$(".button.connect").toggle()

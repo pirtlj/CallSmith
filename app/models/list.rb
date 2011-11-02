@@ -43,6 +43,23 @@ class List < ActiveRecord::Base
       call_gateway.redirect_to(url)
   end
   
+  def cancel
+    # put your own credentials here
+    account_sid = 'AC480c16e9c9374d60b82894abc39a269e'
+    auth_token = '06679fd51c1bddb4643773c77b0d25d3'
+
+    # set up a client to talk to the Twilio REST API
+    twilio_client = Twilio::REST::Client.new account_sid, auth_token
+ 
+    # if you have the call sid, you can fetch a call object via:
+    call_gateway =  twilio_client.account.calls.get(self.sid)
+
+    # redirect an in-progress call
+    url = handle_connect_list_url(self, {:format => :twiml, :auth_token => user.authentication_token, :callback_type => "start"})
+    
+    call_gateway.redirect_to(url)
+  end
+  
   def reset_all
     self.list_contacts.each{ |list_contact|
         list_contact.reset
