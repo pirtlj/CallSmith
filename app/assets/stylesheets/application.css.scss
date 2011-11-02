@@ -29,37 +29,9 @@ html {
 	}
 }
 
-$gw-column: 471px;          // Column Width
-$gw-gutter: 18px;           // Gutter Width
-
 @mixin col($dist) {
 }
 
 .layout-wraper {
  	height: 100%;
-	.col {
-		width: grid-width(1);
-		z-index: 1;
-		background: white;
-  		float: left;
-	}
-
-	.left {
-		@include box-shadow(1px 1px 2px 0 grey);
-		margin-left: 0px;
-		height: 100%;
-	}
-
-	.right {
-		@include box-shadow(1px 1px 2px 0 grey);
-		margin-left: $gw-gutter;
-
-		bottom: 15px;
-		top: 15px;
-
-		position: absolute;
-		float: right;
-		left: 100%;
-		z-index: 1;
-	}
 }
