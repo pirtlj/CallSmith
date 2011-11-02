@@ -45,7 +45,7 @@ CallSmith::Application.routes.draw do
   match 'instructions', :to => 'home#instructions'
 
   match 'home', :to => 'home#home'
-  root :to => "home#index"
+  root :to => "home#home"
 
   devise_for :users
   resources :users, :only => [:show, :update] do
