@@ -32,7 +32,7 @@ class CallSmith.Views.Lists.ShowView extends Backbone.View
 		@model.connect(@setConnected)
 	
 	onDialClick: ->
-		alert("DIAL");
+		@model.next()
 					
 	setConnected: ->
 		@connected = true
