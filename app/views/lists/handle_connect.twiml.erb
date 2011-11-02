@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
+	
+	
+	<Say voice="woman">
+		Hello Master.
+	</Say>
+	<Pause length="1"/>
 	<Say voice="woman">
 		You have <%= @list.list_contacts.count %> calls scheduled.
-		Press dial to call <%= @list.list_contacts.pending.first.contact.first_name%> <%= @list.list_contacts.pending.first.contact.last_name %>.
+		Press dial and I shall connect you to <%= @list.list_contacts.pending.first.contact.first_name%> <%= @list.list_contacts.pending.first.contact.last_name %>.
 	</Say>
 		
     <Pause length="30"/>
