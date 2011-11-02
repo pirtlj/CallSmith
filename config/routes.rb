@@ -1,12 +1,25 @@
 CallSmith::Application.routes.draw do
   
 
-  resources :list_contacts
+  resources :list_contacts do
+    member do
+      get :dial
+      post:dial
+      
+      post :handle_dial
+      get :handle_dial
+    end
+  end
 
   resources :lists do
+    resources :list_contacts
     member do
       post :connect
+      post :next
+      post :cancel
+      
       post :handle_connect
+      get :handle_connect
     end
   end
 

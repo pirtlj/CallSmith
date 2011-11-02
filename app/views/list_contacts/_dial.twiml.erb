@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+  <Say voice="woman">Calling <%=@list_contact.contact.first_name%> <%=@list_contact.contact.last_name%></Say>
+  <Dial>
+  	<%= @list_contact.contact.phone_number %>
+  </Dial>
+</Response>

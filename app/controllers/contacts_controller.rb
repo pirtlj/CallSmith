@@ -54,6 +54,7 @@ class ContactsController < ApplicationController
     
     if request.xhr?
       if @contact.save
+        @list.save
         respond_to do |format|
           format.html { render partial: 'new' }
           format.json { render json: @contact }

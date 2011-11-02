@@ -1,8 +1,19 @@
 class CallSmith.Models.List extends Backbone.RelationalModel
 	paramRoot: 'list'
+	listContacts: null
+	
+	initialize: ->
+		@listContacts = new CallSmith.Collections.ListContactsCollection()
+		@listContacts.url = '/lists/' + @id + '/list_contacts'
 
 	connectURL: ->
 		@url() + "/connect"
+		
+	nextURL: ->
+		@url() + "/next"
+		
+	cancelURL: ->
+		@url() + "/cancel"
 		
 	defaults:
 		user_id: null
@@ -20,15 +31,29 @@ class CallSmith.Models.List extends Backbone.RelationalModel
 				key: 'list'
 			]
 
-	connect: ->
-		alert("contecting to server url: " + @connectURL())
-		
+	connect: (callback = null) ->
 		$.post(@connectURL(), {}, (data) ->
-			alert("TA DA!")
+			if callback then callback()
 		, "json")
 	    .error((x,e) ->
 			alert("ERROR")
-		);
+		)
+	
+	next: (callback = null) ->
+		$.post(@nextURL(), {}, (data) ->
+			if callback then callback()
+		, "json")
+	    .error((x,e) ->
+			alert("ERROR")
+		)
+	
+	cancel: (callback = null) ->
+		$.post(@cancelURL(), {}, (data) ->
+			if callback then callback()
+		, "json")
+	    .error((x,e) ->
+			alert("ERROR")
+		)
 		
 		
 

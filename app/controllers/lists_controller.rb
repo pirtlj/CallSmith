@@ -83,15 +83,36 @@ class ListsController < ApplicationController
   
   def connect
     @list = List.find(params[:id])
-      
     @list.connect
+    
     respond_to do |format|
         format.json { render json: @list }
     end
   end
   
   def handle_connect
-  
+    @list = List.find(params[:id])
+    @list.sid = params["CallSid"]
+    @list.save
   end
+  
+  def next
+    @list = List.find(params[:id])
+    @list.next
+    
+    respond_to do |format|
+        format.json { render json: @list }
+    end
+  end
+  
+  def cancel
+    @list = List.find(params[:id])
+    @list.cancel
+    
+    respond_to do |format|
+        format.json { render json: @list }
+    end
+  end
+  
   
 end
