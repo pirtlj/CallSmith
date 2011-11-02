@@ -94,7 +94,6 @@ class ListContactsController < ApplicationController
   
   def handle_dial
     @list_contact = ListContact.find(params[:id])
-  
   end
   
 end

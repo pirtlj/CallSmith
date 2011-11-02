@@ -4,6 +4,9 @@ class CallSmith.Models.List extends Backbone.RelationalModel
 	connectURL: ->
 		@url() + "/connect"
 		
+	nextURL: ->
+		@url() + "/next"
+		
 	defaults:
 		user_id: null
 		name: null
@@ -20,13 +23,21 @@ class CallSmith.Models.List extends Backbone.RelationalModel
 				key: 'list'
 			]
 
-	connect: (callback = null) ->		
+	connect: (callback = null) ->
 		$.post(@connectURL(), {}, (data) ->
 			if callback then callback()
 		, "json")
 	    .error((x,e) ->
 			alert("ERROR")
-		);
+		)
+	
+	next: (callback = null) ->
+		$.post(@nextURL(), {}, (data) ->
+			if callback then callback()
+		, "json")
+	    .error((x,e) ->
+			alert("ERROR")
+		)
 		
 		
 

@@ -5,8 +5,15 @@
 		Press dial to call <%= @list.list_contacts.pending.first.contact.first_name%> <%= @list.list_contacts.pending.first.contact.last_name %>.
 	</Say>
 		
-    <Pause length="60"/>
-    <Say>Did you fall asleep?</Say>
-    <Pause length="5"/>
-    <Say>Goodbye</Say>
+    <Pause length="30"/>
+
+    <Say voice="woman">
+		Did you fall asleep?
+	</Say>
+    
+	<Pause length="5"/>
+    
+	<Sayvoice="woman">
+		Goodbye
+	</Say>
 </Response>
