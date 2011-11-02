@@ -2,16 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "bourbon";
+
 $color1: #8C8989; /*gray*/
 $color2: #6A6868; /*dark gray*/
 $color3: #EEE; /*ligher*/
+
+$hover-color: 	#dceaf4;
+$select-color: 	#bbd8e9;
+
 $borderradius: 5px;
 
 .ListContacts-ShowView {
-	background-color: $color3;
+	:hover {
+		background: $hover-color;
+	}
 	.contact {		
 	    display: inline-block;
-		height:30px;
+		height:30px;		
+	    width: 100%;
 		vertical-align: middle;
 		div {
 			float: left;
@@ -29,11 +37,14 @@ $borderradius: 5px;
 		.phone-number {
 			width:130px;
 		}
-		.actions {
-			width: 55px;
+		.delete {
+			float: right;
 		}
 	}
 }
-.ListContacts-ShowView:hover {
-	font-weight:bold;
+.ListContacts-ShowView.selected {
+	background: $select-color;
+	:hover {
+		background: $select-color;
+	}
 }

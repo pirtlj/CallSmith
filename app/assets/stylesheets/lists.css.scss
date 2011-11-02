@@ -18,7 +18,7 @@ $borderradius: 5px;
 		text-align: center;
 		width: 166px;
 		display: inline-block;
-	    margin: 14px 0px 14px 20px;
+	    margin: 14px 116px;
 	    font-size: 2.5em;
 	}
 	
@@ -52,7 +52,6 @@ $borderradius: 5px;
 		
 		.footer {
 			height:5px;
-			background-color:$color3;
 			border-bottom-left-radius:$borderradius;
 			border-bottom-right-radius:$borderradius;
 			}

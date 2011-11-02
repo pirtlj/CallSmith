@@ -16,6 +16,7 @@ html {
 
 		#container {
 		 	height: 100%;
+			padding: 0px 10px;
 			#main {
 				position: absolute;
 				top: 75px;
@@ -23,12 +24,29 @@ html {
 
 				#CallSmithApp {
 			    	height: 100%;
+					#col-left {
+						position: absolute;
+					 	height: 100%;
+						z-index: 1;
+
+					    background: white;
+						@include box-shadow(1px 1px 2px 0 grey);
+
+					}
+					#col-right {
+						position: absolute;
+					 	height: 100%;
+						left: 50%;
+						z-index: -1;
+						
+					    background: white;
+						@include box-shadow(1px 1px 2px 0 grey);
+					}
 				}
 			}
 		}
 	}
 }
-
 @mixin col($dist) {
 }
 

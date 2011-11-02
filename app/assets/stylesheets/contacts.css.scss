@@ -6,6 +6,20 @@
 @import "inc/jqueryui";
 @import "list_contacts";
 
+
+.Contacts-ShowView {
+	position: absolute;
+	height: 100%;
+	top: 0px;
+	left: 0%;
+	z-index: 0;
+	@include box-shadow(1px 1px 2px 0 grey);
+	background: white;
+	float: left;
+}
+
+
+
 .CallSmith-header {
 	background: lightBlue;
 	width: 100%;

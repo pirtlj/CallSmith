@@ -16,5 +16,6 @@ class CallSmith.Views.ListContacts.ShowView extends Backbone.View
 		
 	selectContact: ->
 		window.AppInstance.setSelectedContact(@model.get("contact"))
-		
+		$('.ListContacts-ShowView').removeClass('selected')
+		$(this.el).addClass('selected')
 		return this

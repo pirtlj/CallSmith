@@ -6,7 +6,8 @@ class CallSmith.Views.ApplicationView extends Backbone.View
 	selectedList: null
 	selectedContact: null
 	listView: null
-		
+	contactView: null
+	
 	initialize: (options) ->
 		@el = $('#CallSmithApp')
 		@lists = new CallSmith.Collections.ListsCollection()
@@ -24,7 +25,18 @@ class CallSmith.Views.ApplicationView extends Backbone.View
 		return this
 	
 	setSelectedContact: (contact) ->
-		contactView = new CallSmith.Views.Contacts.ShowView(model: contact)
-		$("#col-right").html(contactView.render().el)
+		if @contactView
+			$(@contactView.el).animate(
+				left: "0%"
+			, 1000, (elm)->
+				$(@).remove()
+			)
+		
+		@contactView = new CallSmith.Views.Contacts.ShowView(model: contact)
+		$(".layout-wraper").append(@contactView.render().el)
+		
+		$(@contactView.el).animate(
+			left: "50%"
+		, 1000)
 		
 
