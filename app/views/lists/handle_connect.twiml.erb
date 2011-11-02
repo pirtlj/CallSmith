@@ -8,7 +8,9 @@
 	<Pause length="1"/>
 	<Say voice="woman">
 		You have <%= @list.list_contacts.count %> calls scheduled.
+		<% @list.list_contacts.count > 0 %>
 		Press dial and I shall connect you to <%= @list.list_contacts.pending.first.contact.first_name%> <%= @list.list_contacts.pending.first.contact.last_name %>.
+		<% end %>
 	</Say>
 		
     <Pause length="30"/>

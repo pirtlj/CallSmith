@@ -1,5 +1,10 @@
 class CallSmith.Models.List extends Backbone.RelationalModel
 	paramRoot: 'list'
+	listContacts: null
+	
+	initialize: ->
+		@listContacts = new CallSmith.Collections.ListContactsCollection()
+		@listContacts.url = '/lists/' + @id + '/list_contacts'
 
 	connectURL: ->
 		@url() + "/connect"
