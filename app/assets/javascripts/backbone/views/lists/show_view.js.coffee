@@ -26,7 +26,6 @@ class CallSmith.Views.Lists.ShowView extends Backbone.View
 		view = new CallSmith.Views.ListContacts.ShowView({model : listContact})
 		this.$('#list_contacts').prepend(view.render().el);
 
-
 	onConnectClick: ->
 		@model.connect(@connectCallback)
 	

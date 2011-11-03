@@ -1,0 +1,2 @@
+module ContactNotesHelper
+end

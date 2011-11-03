@@ -1,0 +1,28 @@
+// Place all the styles related to the ContactNotes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.ContactNotes-NewView {
+	float: left;
+	width: 100%;
+
+	form {
+		float: left;
+		
+		width: 100%;
+		
+		textarea {
+			display: block;
+			width: 350px;
+			margin: auto;
+			resize: none;
+		}
+		
+		.submit {
+			float: right;
+		    margin: 20px;
+		}
+	
+	}
+}

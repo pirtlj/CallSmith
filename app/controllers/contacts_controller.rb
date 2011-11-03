@@ -50,11 +50,12 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     @list = current_user.lists.find_or_create_by_scheduled_for(params[:scheduled_for])
-    @contact = @list.contacts.create(params[:contact])
+    
+    @contact = current_user.contacts.new(params[:contact])
+    @list.contacts << @contact
     
     if request.xhr?
-      if @contact.save
-        @list.save
+      if @contact.save && @list.save
         respond_to do |format|
           format.html { render partial: 'new' }
           format.json { render json: @contact }

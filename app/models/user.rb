@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   
   before_save :ensure_authentication_token
   
-  has_many :contacts
-  has_many :lists
+  has_many :contacts, :dependent => :destroy
+  has_many :lists, :dependent => :destroy
   has_many :calls, :through => :contacts
   validates :phone_number, :presence => true
     def start_todays_calls

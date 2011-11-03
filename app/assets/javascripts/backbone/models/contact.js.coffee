@@ -1,22 +1,20 @@
 class CallSmith.Models.Contact extends Backbone.RelationalModel
-  paramRoot: 'contact'
+	paramRoot: 'contact'
+	contactNotes: null
+		
+	relations: [
+		type: 'HasMany',
+		key: 'listContacts',
+		relatedModel: 'CallSmith.Models.ListContact',
+		reverseRelation:
+			key: 'contact'
+		]
 
-  defaults:
-    phone_number: null
-    first_name: null
-    last_name: null
+	initialize: ->
+		@contactNotes = new CallSmith.Collections.ContactNotesCollection()
+		@contactNotes.url = '/contacts/' + @id + '/contact_notes'
 
-  relations: [
-        {
-            type: 'HasMany',
-            key: 'listContacts',
-            relatedModel: 'CallSmith.Models.ListContact',
-            reverseRelation: {
-                key: 'contact'
-            }
-        }
-    ]
-
+		
 class CallSmith.Collections.ContactsCollection extends Backbone.Collection
-  model: CallSmith.Models.Contact
-  url: '/contacts'
+	model: CallSmith.Models.Contact
+	url: '/contacts'

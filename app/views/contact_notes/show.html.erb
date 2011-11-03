@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Contact:</b>
+  <%= @contact_note.contact_id %>
+</p>
+
+<p>
+  <b>Text:</b>
+  <%= @contact_note.text %>
+</p>
+
+
+<%= link_to 'Edit', edit_contact_note_path(@contact_note) %> |
+<%= link_to 'Back', contact_notes_path %>

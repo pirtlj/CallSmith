@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111031053505) do
+ActiveRecord::Schema.define(:version => 20111102225037) do
 
   create_table "calls", :force => true do |t|
     t.integer  "contact_id"
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(:version => 20111031053505) do
     t.datetime "updated_at"
     t.string   "aasm_state"
     t.string   "sid"
+  end
+
+  create_table "contact_notes", :force => true do |t|
+    t.integer  "contact_id"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "contacts", :force => true do |t|

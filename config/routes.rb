@@ -1,6 +1,12 @@
 CallSmith::Application.routes.draw do
   
 
+  resources :contacts do 
+    resources :contact_notes
+  end
+  
+  resources :contact_notes
+
   resources :list_contacts do
     member do
       get :dial
@@ -55,6 +61,8 @@ CallSmith::Application.routes.draw do
     
     resources :contacts
   end
+
+  
 
 
   # The priority is based upon order of creation:

@@ -11,6 +11,7 @@
 .Contacts-ShowView {
 	position: absolute;
 	height: 100%;
+	width: 460px;
 	top: 0px;
 	left: 0%;
 	z-index: 0;
@@ -49,6 +50,11 @@
 	
 	.button:hover {
 		cursor: pointer;
+	}
+	
+	#new_contact_note {
+	    float: left;
+		width: 100%
 	}
 }
 
