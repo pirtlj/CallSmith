@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+
 .ContactNotes-NewView {
 	float: left;
 	width: 100%;
@@ -15,8 +16,12 @@
 		textarea {
 			display: block;
 			width: 350px;
+			height: 1.2em;
+			min-height: 1.2em;
 			margin: auto;
 			resize: none;
+		}
+		textarea:focus {
 		}
 		
 		.submit {
