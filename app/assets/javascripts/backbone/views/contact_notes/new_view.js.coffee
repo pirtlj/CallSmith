@@ -24,7 +24,6 @@ class CallSmith.Views.ContactNotes.NewView extends Backbone.View
 		@collection.create(@model.toJSON(), 
 			success: (contact_note) =>
 				@model = contact_note
-				window.location.hash = "/#{@model.id}"
 
 			error: (contact_note, jqXHR) =>
 				@model.set({errors: $.parseJSON(jqXHR.responseText)})

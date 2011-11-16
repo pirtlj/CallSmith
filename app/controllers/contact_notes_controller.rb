@@ -42,7 +42,7 @@ class ContactNotesController < ApplicationController
   # POST /contact_notes
   # POST /contact_notes.json
   def create
-    @contact_note = current_user.contacts.new(params[:contact_note])
+    @contact_note = current_user.contacts.find(params[:contact_id]).contact_notes.new(params[:contact_note])
 
     respond_to do |format|
       if @contact_note.save

@@ -4,6 +4,7 @@ class CallSmith.Views.Contacts.ShowView extends Backbone.View
 	template: JST["backbone/templates/contacts/show"]
 	className: "Contacts-ShowView"
 	newContactNoteView: null
+	contactNotesview: null
 		
 	events:
 		'click .button.source'	: 'onSourceClick'
@@ -13,11 +14,14 @@ class CallSmith.Views.Contacts.ShowView extends Backbone.View
 		_.bindAll(this, 'render', 'onSourceClick', 'onCloseClick')
 		@model.contactNotes.fetch()
 		
+		@newContactNoteView = new CallSmith.Views.ContactNotes.NewView(collection: @model.contactNotes)
+		@contactNotesview = new CallSmith.Views.ContactNotes.IndexView(contactNotes: @model.contactNotes)
+		
 	render: ->
 		$(this.el).html(@template(@model.toJSON()))
 
-		@newContactNoteView = new CallSmith.Views.ContactNotes.NewView(collection: @model.contactNotes)
 		$(this.el).find("#new_contact_note").html(@newContactNoteView.render().el)
+		$(this.el).find("#contact_notes").html(@contactNotesview.render().el)
 		return this
 		
 	onSourceClick: ->
