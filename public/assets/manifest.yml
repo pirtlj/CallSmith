@@ -40,7 +40,7 @@ jquery.tablesorter.js: jquery-ce0cb9b1cc6b627ffcf7ae2a42dee706.tablesorter.js
 jquery.validate.js: jquery-5bfcc81990ff0dd7e4ce112d7f4a8ab4.validate.js
 jquery-ui.min.js: jquery-ui-7e33882a28fc84ad0e0e47e46cbf901c.min.js
 jquery.min.js: jquery-8a50feed8d29566738ad005e19fe1c2d.min.js
-application.js: application-a5c1b0f05d2e72d4f39056a428ad8388.js
+application.js: application-d9ab628a6283344e3de3c0443ddf1961.js
 backbone/templates/application.js: backbone/templates/application-398bd43da4f3db7e36e34228fe5f1396.js
 application.css: application-434a441fdd35d73ce79d2cc866ad9cb8.css
 contacts.css: contacts-eb4cbce75040365d47b9fb01ef9b95a5.css
