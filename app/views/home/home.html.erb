@@ -2,6 +2,6 @@
 
 <script type="text/javascript">
   $(function() {
-	window.AppInstance = new CallSmith.Views.ApplicationView({lists: <%= current_user.lists.to_json.html_safe %>});
+	window.AppInstance = new CallSmith.Views.ApplicationView({lists: <%= current_user.lists.to_json.html_safe %> <%= current_user.lists.today.first ? ", currentListId: #{current_user.lists.today.first.id}" : "" %>});
   });
 </script>

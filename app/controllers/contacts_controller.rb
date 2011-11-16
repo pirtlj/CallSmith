@@ -49,7 +49,11 @@ class ContactsController < ApplicationController
   # POST /contacts
   # POST /contacts.json
   def create
-    @list = current_user.lists.find_or_create_by_scheduled_for(params[:scheduled_for])
+    
+    #TODO Rails needs to improve this -Joseph
+    scheduled_for = Date.civil(params[:scheduled_for][:"scheduled_for(1i)"].to_i,params[:scheduled_for][:"scheduled_for(2i)"].to_i,params[:scheduled_for][:"scheduled_for(3i)"].to_i)
+    
+    @list = current_user.lists.find_or_create_by_scheduled_for(scheduled_for)
     
     @contact = current_user.contacts.new(params[:contact])
     @list.contacts << @contact

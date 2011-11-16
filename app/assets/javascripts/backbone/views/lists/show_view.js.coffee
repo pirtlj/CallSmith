@@ -8,10 +8,11 @@ class CallSmith.Views.Lists.ShowView extends Backbone.View
 		'click .button.connect'	: 'onConnectClick'
 		'click .button.dial'	: 'onDialClick'
 		'click .button.cancel'	: 'onCancelClick'
-	
+		'click .button.close'	: 'onCloseClick'
+		
 	initialize: (options) ->
-		_.bindAll(this, 'addOne', 'addAll', 'render', 'onConnectClick', 'onDialClick', 'onCancelClick', 'connectCallback', 'dialCallback', 'cancelCallback')
-		@model.listContacts.bind('reset', @addAll)
+		_.bindAll(this, 'addOne', 'addAll', 'render', 'onConnectClick', 'onDialClick', 'onCancelClick', 'connectCallback', 'dialCallback', 'cancelCallback', 'onCloseClick')
+		@model.listContacts.bind('reset', @render)
 		@model.listContacts.fetch()
 
 	render: ->
@@ -46,5 +47,9 @@ class CallSmith.Views.Lists.ShowView extends Backbone.View
 	cancelCallback: ->	
 		$(".button.cancel").toggle()
 		$(".button.dial").toggle()
+		
+		
+	onCloseClick: ->
+		window.AppInstance.setSelectedList(null)
 		
 		

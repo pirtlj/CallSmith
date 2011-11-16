@@ -13,7 +13,7 @@ $borderradius: 5px;
 	h1 {
 		font-size: 2.5em;
 	}
-	.button {
+	.button.big {
 		@include button;
 		text-align: center;
 		width: 166px;
@@ -21,6 +21,20 @@ $borderradius: 5px;
 	    margin: 14px 116px;
 	    font-size: 2.5em;
 	}
+	
+	.close.button {
+	    font-weight: bold;
+	    float: right;
+    	margin: 10px;
+	    width: 16px;
+	    height: 16px;
+	    text-align: center;
+	}
+	
+	.button:hover {
+		cursor: pointer;
+	}
+	
 	
 	.header {
 		height:35px;

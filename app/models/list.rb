@@ -8,6 +8,11 @@ class List < ActiveRecord::Base
   has_many :contacts, :through => :list_contacts
   
   
+  class << self
+    def today
+       where(:scheduled_for => Date.today)
+    end
+  end
 
   def connect
       # put your own credentials here
@@ -66,5 +71,4 @@ class List < ActiveRecord::Base
         list_contact.save
       }
   end
-
 end
