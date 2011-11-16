@@ -8,27 +8,28 @@
 	float: left;
 	width: 100%;
 
+	h3 {
+		margin-left: 10px;
+	}
+
 	form {
 		float: left;
 		
 		width: 100%;
 		
-		textarea {
+		.text {
 			display: block;
-			width: 350px;
+			width:  80%;
 			height: 1.2em;
 			min-height: 1.2em;
-			margin: auto;
+			margin: 0px 16px;
 			resize: none;
 		}
-		textarea:focus {
+		input {
+	  	  float: right;
+		    margin: 10px 15px;
+
 		}
-		
-		.submit {
-			float: right;
-		    margin: 20px;
-		}
-	
 	}
 }
 
@@ -36,5 +37,12 @@
 	float: left;
 	width: 100%;
 
+	float: left;
+	height: 100%;
 
+	table {
+		height:	310px;
+		overflow-y: scroll;
+		display: block;
+	}
 }

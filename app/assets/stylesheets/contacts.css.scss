@@ -3,7 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import "util";
-@import "inc/jqueryui";
 @import "list_contacts";
 @import "bourbon";
 
@@ -19,11 +18,26 @@
 	background: white;
 	float: left;
 	
+	
 	.name {
 		float: left;
 	    font-size: 3em;
 	    margin: 20px;
 	}
+	
+	#datepicker{
+		display: none;
+	}
+	
+	.ui-datepicker-trigger {
+	    font-weight: bold;
+	    float: right;
+    	margin: 10px;
+	    width: 16px;
+	    height: 16px;
+	    text-align: center;
+	}
+	
 	.number {
 		width: 100%;
 		float: right;
@@ -53,6 +67,11 @@
 	}
 	
 	#new_contact_note {
+	    float: left;
+		width: 100%
+	}
+	
+	#contact_notes {
 	    float: left;
 		width: 100%
 	}

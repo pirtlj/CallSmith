@@ -15,6 +15,9 @@ gem 'httparty'
 gem 'aasm' 
 gem 'rails-backbone'
 gem 'bourbon'
+gem 'css-bootstrap-rails'
+
+
 
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"

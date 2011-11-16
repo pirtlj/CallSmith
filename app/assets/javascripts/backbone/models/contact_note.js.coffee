@@ -1,10 +1,13 @@
 class CallSmith.Models.ContactNote extends Backbone.Model
-  paramRoot: 'contact_note'
+	paramRoot: 'contact_note'
 
-  defaults:
-    contact_id: null
-    text: null
-  
+	defaults:
+		contact_id: null
+		text: null
+
 class CallSmith.Collections.ContactNotesCollection extends Backbone.Collection
-  model: CallSmith.Models.ContactNote
-  url: '/contact_notes'
+	model: CallSmith.Models.ContactNote
+	url: '/contact_notes'
+	
+	comparator: (contactNote) ->
+		-contactNote.get("created_at")
