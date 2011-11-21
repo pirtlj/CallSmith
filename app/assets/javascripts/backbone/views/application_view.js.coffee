@@ -46,7 +46,7 @@ class CallSmith.Views.ApplicationView extends Backbone.View
 	setSelectedContact: (contact) ->
 		$('.ListContacts-ShowView').removeClass('selected')
 		
-		animationDuration = 500;
+		animationDuration = 150;
 		if @contactView
 			$(@contactView.el).animate(
 				left: "0%"

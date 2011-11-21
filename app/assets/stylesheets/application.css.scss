@@ -16,7 +16,7 @@ html {
 
 	body {
  		height: 100%;
-
+		background: #EEE;
 		#flash_notice{
 		    z-index: 10;
 		    position: absolute;
@@ -37,9 +37,8 @@ html {
 						position: absolute;
 					 	height: 100%;
 						z-index: 1;
-
 					    background: white;
-						@include box-shadow(1px 1px 2px 0 grey);
+
 
 					}
 					#col-right {
@@ -49,7 +48,7 @@ html {
 						z-index: -1;
 						
 					    background: white;
-						@include box-shadow(1px 1px 2px 0 grey);
+
 					}
 				}
 			}
