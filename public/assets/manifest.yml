@@ -55,9 +55,9 @@ jquery.validate.js: jquery-5bfcc81990ff0dd7e4ce112d7f4a8ab4.validate.js
 jquery-ui.min.js: jquery-ui-7e33882a28fc84ad0e0e47e46cbf901c.min.js
 jquery.min.js: jquery-8a50feed8d29566738ad005e19fe1c2d.min.js
 bootstrap.min.css: bootstrap-ea6fc15c7c74b0553dccd18aec65406e.min.css
-application.js: application-0c742d2ab21c83e6137a8003008f71bc.js
-backbone/templates/application.js: backbone/templates/application-398bd43da4f3db7e36e34228fe5f1396.js
-application.css: application-b771978ec9d92711e58efa8112e35715.css
-contacts.css: contacts-a17e0617ef534e8bdfc47406c73a2ed4.css
+application.js: application-1ae4835594fc4697be4b7f76b10065bc.js
+backbone/templates/application.js: backbone/templates/application-2fb3904f200b2ca2412c55131802415a.js
+application.css: application-63692601f892ae1b4820cb6f744fc820.css
+contacts.css: contacts-182cd661691a0035b71510463df161e2.css
 jquery.js: jquery-8a50feed8d29566738ad005e19fe1c2d.js
 jqueryui.js: jqueryui-cd30223140bd525c3c0e5d133643786a.js
