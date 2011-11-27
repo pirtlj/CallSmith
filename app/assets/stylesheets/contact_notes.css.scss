@@ -9,7 +9,7 @@
 	width: 100%;
 
 	h3 {
-		margin-left: 10px;
+
 	}
 
 	form {
@@ -19,15 +19,14 @@
 		
 		.text {
 			display: block;
-			width:  80%;
+			width:  97%;
 			height: 3.2em;
 			min-height: 1.2em;
-			margin: 0px 16px;
+			margin-top: 3px;
 			resize: none;
 		}
 		input {
-	  	  float: right;
-		    margin: 10px 15px;
+		    margin-top: 10px;
 
 		}
 	}
@@ -42,14 +41,46 @@
 
 	table {
 		display: block;
+		
+		overflow:scroll;
+		overflow-x: hidden;
+		height: 300px;
+	
 		table-layout: fixed;
-	 	td { white-space: pre;           /* CSS 2.0 */
+	 	td { 
+		white-space: pre;           /* CSS 2.0 */
 		white-space: pre-wrap;      /* CSS 2.1 */
 		white-space: pre-line;      /* CSS 3.0 */
 		white-space: -pre-wrap;     /* Opera 4-6 */
 		white-space: -o-pre-wrap;   /* Opera 7 */
 		white-space: -moz-pre-wrap; /* Mozilla */
 		white-space: -hp-pre-wrap;  /* HP Printers */
-		word-wrap: break-word;      /* IE 5+ */ }
+		word-wrap: break-word;      /* IE 5+ */ 
+		
+		}
 	}
+}
+
+::-webkit-scrollbar {
+width: 14px;
+height: 10px;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment  {
+height: 100%;
+display: block;
+background-color: transparent;
+}
+
+::-webkit-scrollbar-track-piece  {
+background-color: #EEE;
+-webkit-border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+height: 50px;
+background-color: #6A6868;
+border: 1px solid #eee;
+-webkit-border-radius: 3px;
 }
