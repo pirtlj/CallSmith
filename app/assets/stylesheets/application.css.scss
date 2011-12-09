@@ -1,0 +1,62 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+ *= require bootstrap
+ *= require vendor
+
+*/
+@import "bourbon";
+
+
+html {
+	height: 100%;
+
+	body { 		
+height: 100%;
+		background: #EEE;
+		#flash_notice{
+			z-index: 10;
+		    position: absolute;
+		    top: 10px;
+		    left: 40%;
+		}
+		#container {
+	 		height: 100%;
+			padding: 0px 10px;
+			#main {
+				position: absolute;
+				top: 75px;
+				bottom: 20px;
+
+				#CallSmithApp {
+			    	height: 100%;
+					#col-left {
+						position: absolute;
+					 	height: 100%;
+						z-index: 1;
+					    background: white;
+					}
+					#col-right {
+						position: absolute;
+					 	height: 100%;
+						left: 50%;
+						z-index: -1;
+					    background: white;
+								  
+					}
+				}
+			}
+		}
+	}
+}
+
+
+@mixin col($dist) {
+}
+
+.layout-wraper {
+ 	height: 100%;
+}
