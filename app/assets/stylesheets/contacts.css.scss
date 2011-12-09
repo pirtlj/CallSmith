@@ -21,9 +21,14 @@
 	
 	.name {
 		float: left;
+		margin-top: 10px;
 	    font-size: 3em;
-	    margin: 20px;
 	}
+	
+	.spacer {
+		margin-top: 75px;
+	}
+	
 	
 	#datepicker{
 		display: none;
@@ -41,8 +46,7 @@
 	.number {
 		width: 100%;
 		float: right;
-	    font-size: 1.5em;
-	    margin: 0px 10px 20px 0px;
+	    margin: 0px 10px 10px 0px;
 		text-align: right;
 	}
 	
