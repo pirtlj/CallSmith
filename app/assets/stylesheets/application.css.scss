@@ -6,10 +6,8 @@
  *= require_tree . 
  *= require bootstrap
  *= require vendor
-
 */
 @import "bourbon";
-
 
 html {
 	height: 100%;
@@ -17,12 +15,17 @@ html {
 	body {
  		height: 100%;
 		background: #EEE;
+		label {
+			text-align:left;
+		}
+		
 		#flash_notice{
 		    z-index: 10;
 		    position: absolute;
 		    top: 10px;
 		    left: 40%;
-		}
+			}
+		
 		#container {
 		 	height: 100%;
 			padding: 0px 10px;
@@ -38,18 +41,15 @@ html {
 					 	height: 100%;
 						z-index: 1;
 					    background: white;
-
-
 					}
 					#col-right {
 						position: absolute;
 					 	height: 100%;
 						left: 50%;
 						z-index: -1;
-						
 					    background: white;
-
 					}
+
 				}
 			}
 		}
